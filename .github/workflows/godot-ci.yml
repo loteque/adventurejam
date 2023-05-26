@@ -1,0 +1,143 @@
+name: "godot-ci export"
+on: 
+  push:
+    tags:
+      - "v*"
+
+env:
+  GODOT_VERSION: 3.5
+  EXPORT_NAME: godot_test_framework
+  PROJECT_PATH: project/
+
+jobs:
+
+  export-web:
+    name: Web Export
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:3.5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.2
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          cd $PROJECT_PATH
+          godot -v --export "HTML5" ../build/web/index.html
+          cd ../build/web && zip -r ../../web.zip ./* && cd -
+          pwd
+          ls
+      - name: Release
+        id: release
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.GH_CREDENTIALS }}
+          files: web.zip
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'  
+      - name: Install rsync
+        run: |
+          apt-get update && apt-get install -y rsync
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: build/web # The folder the action should deploy.
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GH_CREDENTIALS }}
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+
+  export-linux:
+    name: Linux Export
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:3.5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.2
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Linux Build
+        run: |
+          mkdir -v -p build/linux
+          cd $PROJECT_PATH
+          godot -v --export "Linux/X11" ../build/linux/$EXPORT_NAME.x86_64
+          cd ../build/linux && zip -r ../../linux.zip ./* && cd -
+          pwd
+          ls
+      - name: Release
+        id: release
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.GH_CREDENTIALS }}
+          files: linux.zip
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+    
+  export-windows:
+    name: Windows Export
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:3.5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.2
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Windows Build
+        run: |
+          mkdir -v -p build/windows
+          cd $PROJECT_PATH
+          godot -v --export "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
+          cd ../build/windows && zip -r ../../windows.zip ./* && cd -
+          pwd
+          ls
+      - name: Release
+        id: release
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.GH_CREDENTIALS }}
+          files: windows.zip
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+          
+  export-mac:
+    name: Mac Export
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:3.5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.2
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Mac Build
+        run: |
+          mkdir -v -p build/mac
+          cd $PROJECT_PATH
+          godot -v --export "Mac OSX" ../build/mac/$EXPORT_NAME.zip
+          cd ../build/mac && zip -r ../../mac.zip ./* && cd -
+          pwd
+          ls
+      - name: Release
+        id: release
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.GH_CREDENTIALS }}
+          files: mac.zip
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'

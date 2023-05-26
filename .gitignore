@@ -1,0 +1,35 @@
+# production ignores
+roughdraft
+.app_config/
+connection/
+086_hdrmaps_com_free.exr
+
+# godot ignores
+.import/
+export.cfg
+ecport_presets.cfg
+release/
+
+# krita ignores
+*.import
+
+# Imported transaltions
+*.translation
+
+# mac ignores
+.DS_Store
+Desktop.ini
+._*
+Thumbs.db
+.Spotlight-V100
+.Trashes
+*.pyc
+*.out
+venv
+node_modules
+.sass-cache
+
+# windows ignores
+*.com
+# *.dll
+*.exe

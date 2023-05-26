@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/MainUI.tscn" type="PackedScene" id=1]
+
+[node name="HelloWorld" type="Node2D"]
+
+[node name="MainUI" parent="." instance=ExtResource( 1 )]
