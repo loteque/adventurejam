@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/KinematicBody2D.gd" type="Script" id=1]
+[ext_resource path="res://asset/landing.png" type="Texture" id=2]
+[ext_resource path="res://asset/jungle tileset.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 21.5, 31 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+
+[sub_resource type="TileSet" id=3]
+0/name = "jungle tileset.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 96, 32, 32, 32 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 2 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 94, 563 )
+script = ExtResource( 1 )
+SPEED = 5
+GRAVITY = 60
+JUMP = 60
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 14.5, -21 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+position = Vector2( 13, -21 )
+scale = Vector2( 2.3, 1.88571 )
+texture = ExtResource( 2 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 3 )
+cell_size = Vector2( 32, 64 )
+format = 1
+tile_data = PoolIntArray( 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0, 589843, 0, 0, 589844, 0, 0, 589845, 0, 0, 589846, 0, 0, 589847, 0, 0, 589848, 0, 0, 589849, 0, 0, 589850, 0, 0, 589851, 0, 0, 589852, 0, 0, 589853, 0, 0, 589854, 0, 0, 589855, 0, 0 )

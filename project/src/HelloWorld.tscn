@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/MainUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/AudioTest.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/TestLevel.tscn" type="PackedScene" id=3]
 
-[node name="HelloWorld" type="Node2D"]
+[node name="Main" type="Node2D"]
 
 [node name="MainUI" parent="." instance=ExtResource( 1 )]
+visible = false
 
 [node name="AudioTest" parent="." instance=ExtResource( 2 )]
+
+[node name="TestLevel" parent="." instance=ExtResource( 3 )]
