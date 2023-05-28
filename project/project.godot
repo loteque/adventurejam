@@ -36,6 +36,14 @@ config/name="adventurejam"
 run/main_scene="res://src/HelloWorld.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Fmod="*res://addons/fmod/Fmod.tscn"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/fmod/plugin.cfg" )
+
 [physics]
 
 common/enable_pause_aware_picking=true
