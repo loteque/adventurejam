@@ -34,6 +34,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 0/z_index = 0
 
 [node name="TestLevel" type="Node2D"]
+position = Vector2( -69, -414 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 position = Vector2( 94, 563 )
