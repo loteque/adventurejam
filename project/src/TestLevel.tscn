@@ -49,6 +49,15 @@ position = Vector2( 13, -21 )
 scale = Vector2( 2.3, 1.88571 )
 texture = ExtResource( 2 )
 
+[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
+current = true
+smoothing_enabled = true
+smoothing_speed = 25.0
+drag_margin_left = 0.16
+drag_margin_top = 0.16
+drag_margin_right = 0.16
+drag_margin_bottom = 0.16
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 3 )
 cell_size = Vector2( 32, 64 )
