@@ -1,8 +1,9 @@
 extends KinematicBody2D
 
-export var SPEED := 15
-export var GRAVITY := 10
-export var JUMP := 10
+export var SPEED := 10
+export var GRAVITY := 120
+export var JUMP := 100
+export var FRICTION := 0.1
 var velocity = Vector2(0, GRAVITY)
 
 func _physics_process(delta):
@@ -12,9 +13,10 @@ func _physics_process(delta):
 	elif Input.is_action_pressed("ui_left"):
 		velocity.x -= SPEED
 	else:
-		velocity.x = 0
+		velocity.x = lerp(velocity.x, 0, FRICTION)
 	
 	if Input.is_action_pressed("ui_up"):
 		if is_on_floor():
 			velocity.y = -JUMP
-	velocity = move_and_slide(velocity, Vector2.UP)
+	velocity = move_and_slide(velocity, Vector2(0, -1))
+	
