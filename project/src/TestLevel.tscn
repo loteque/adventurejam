@@ -49,9 +49,11 @@ extents = Vector2( 747.75, 36.5 )
 position = Vector2( -69, -414 )
 
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+offset = Vector2( 0, -70 )
+transform = Transform2D( 1, 0, 0, 1, 0, -70 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
-motion_mirroring = Vector2( 320, 0 )
+motion_mirroring = Vector2( 445, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground2/ParallaxLayer"]
 position = Vector2( 90, 119 )
@@ -60,7 +62,7 @@ texture = ExtResource( 8 )
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground2"]
 motion_scale = Vector2( 0.5, 1 )
-motion_mirroring = Vector2( 320, 0 )
+motion_mirroring = Vector2( 445, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground2/ParallaxLayer3"]
 position = Vector2( 91, 118 )
@@ -69,7 +71,7 @@ texture = ExtResource( 9 )
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
 motion_scale = Vector2( 0.7, 1 )
-motion_mirroring = Vector2( 320, 0 )
+motion_mirroring = Vector2( 445, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground2/ParallaxLayer2"]
 position = Vector2( 90, 121 )
