@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/KinematicBody2D.gd" type="Script" id=1]
 [ext_resource path="res://asset/landing.png" type="Texture" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://asset/City.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 21.5, 31 )
+
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 21.5, 31 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
@@ -38,6 +41,9 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 747.75, 36.5 )
 
 [node name="TestLevel" type="Node2D"]
 position = Vector2( -69, -414 )
@@ -98,7 +104,7 @@ position = Vector2( 98, 120 )
 scale = Vector2( 0.235699, -0.274835 )
 texture = ExtResource( 5 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+[node name="KinematicBody2D" type="KinematicBody2D" parent="." groups=["Player"]]
 position = Vector2( 94, 563 )
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
@@ -122,8 +128,26 @@ drag_margin_top = 0.16
 drag_margin_right = 0.16
 drag_margin_bottom = 0.16
 
+[node name="Timer" type="Timer" parent="KinematicBody2D"]
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="KinematicBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Area2D"]
+position = Vector2( 14.5, -21 )
+shape = SubResource( 4 )
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 3 )
 cell_size = Vector2( 32, 64 )
 format = 1
 tile_data = PoolIntArray( 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0, 589843, 0, 0, 589844, 0, 0, 589845, 0, 0, 589846, 0, 0, 589847, 0, 0, 589848, 0, 0, 589849, 0, 0, 589850, 0, 0, 589851, 0, 0, 589852, 0, 0, 589853, 0, 0, 589854, 0, 0, 589855, 0, 0 )
+
+[node name="RespawnArea2D" type="Area2D" parent="." groups=["Respawn"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RespawnArea2D"]
+position = Vector2( 627.25, 747 )
+shape = SubResource( 5 )
+
+[connection signal="timeout" from="KinematicBody2D/Timer" to="KinematicBody2D" method="_on_Timer_timeout"]
+[connection signal="area_entered" from="KinematicBody2D/Area2D" to="KinematicBody2D" method="_on_Area2D_area_entered"]

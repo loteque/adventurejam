@@ -12,7 +12,6 @@ config_version=4
 
 config/name="adventurejam"
 run/main_scene="res://src/HelloWorld.tscn"
-config/icon="res://icon.png"
 
 [display]
 
