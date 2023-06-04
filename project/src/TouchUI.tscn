@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://button_gradient_down.tres" type="Gradient" id=1]
+[ext_resource path="res://button_gradient_up.tres" type="Gradient" id=2]
+
+[sub_resource type="GradientTexture" id=1]
+gradient = ExtResource( 2 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = ExtResource( 1 )
+
+[node name="TouchUI" type="CanvasLayer"]
+
+[node name="DPad" type="Node2D" parent="."]
+position = Vector2( 47, 129 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Left" type="TouchScreenButton" parent="DPad"]
+position = Vector2( -36, -10 )
+scale = Vector2( 0.0128688, 20.2734 )
+normal = SubResource( 1 )
+pressed = SubResource( 2 )
+action = "ui_left"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Down" type="TouchScreenButton" parent="DPad"]
+position = Vector2( -10, 36 )
+rotation = -1.5708
+scale = Vector2( 0.0128688, 20.2734 )
+normal = SubResource( 1 )
+pressed = SubResource( 2 )
+action = "ui_down"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Right" type="TouchScreenButton" parent="DPad"]
+position = Vector2( 36, 10 )
+rotation = 3.14159
+scale = Vector2( 0.0128688, 20.2734 )
+normal = SubResource( 1 )
+pressed = SubResource( 2 )
+action = "ui_right"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Up" type="TouchScreenButton" parent="DPad"]
+position = Vector2( 10, -36 )
+rotation = 1.5708
+scale = Vector2( 0.0128688, 20.2734 )
+normal = SubResource( 1 )
+pressed = SubResource( 2 )
+action = "ui_up"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Buttons" type="Node2D" parent="."]
+position = Vector2( 281, 131 )
+scale = Vector2( 1.2, 1.2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="A" type="TouchScreenButton" parent="Buttons"]
+position = Vector2( -24, -10 )
+scale = Vector2( 0.00967255, 19.8684 )
+normal = SubResource( 1 )
+pressed = SubResource( 2 )
+action = "touch_A"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="B" type="TouchScreenButton" parent="Buttons"]
+position = Vector2( 24, 10 )
+rotation = -3.14159
+scale = Vector2( 0.00967255, 19.8684 )
+normal = SubResource( 1 )
+pressed = SubResource( 2 )
+action = "jump"
+__meta__ = {
+"_edit_lock_": true
+}

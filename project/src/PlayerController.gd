@@ -16,7 +16,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = lerp(velocity.x, 0, FRICTION)
 	
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("jump"):
 		if is_on_floor():
 			velocity.y = -JUMP
 	velocity = move_and_slide(velocity, Vector2.UP)
