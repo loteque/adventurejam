@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/KinematicBody2D.gd" type="Script" id=1]
 [ext_resource path="res://asset/landing.png" type="Texture" id=2]
@@ -14,6 +14,36 @@ extents = Vector2( 5.5, 14.5 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 6.5, 14.5 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 2
+emission_box_extents = Vector3( 1800, 1, 1 )
+flag_disable_z = true
+spread = 64.0
+gravity = Vector3( 0, 300, 0 )
+initial_velocity = 100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 20.0
+damping_random = 1.0
+angle = 12.0
+scale = 1.2
+scale_random = 1.0
+color = Color( 0.611765, 1, 0.882353, 1 )
+
+[sub_resource type="OpenSimplexNoise" id=7]
+octaves = 4
+period = 131.2
+persistence = 0.238
+lacunarity = 0.31
+
+[sub_resource type="NoiseTexture" id=8]
+width = 1
+height = 45
+seamless = true
+as_normalmap = true
+bump_strength = 0.2
+noise = SubResource( 7 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -127,6 +157,16 @@ autostart = true
 position = Vector2( 12.5, -17.5 )
 shape = SubResource( 4 )
 
+[node name="RainParticles" type="Particles2D" parent="."]
+position = Vector2( 480, -1 )
+amount = 512
+lifetime = 1.05
+speed_scale = 2.0
+visibility_rect = Rect2( -600, 0, 1800, 400 )
+local_coords = false
+process_material = SubResource( 6 )
+texture = SubResource( 8 )
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 3 )
 cell_size = Vector2( 32, 32 )
@@ -137,6 +177,7 @@ tile_data = PoolIntArray( 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0
 position = Vector2( 858, 423 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RespawnArea2D"]
+position = Vector2( 17, 126 )
 shape = SubResource( 5 )
 
 [connection signal="timeout" from="PlayerController/Timer" to="PlayerController" method="_on_Timer_timeout"]
