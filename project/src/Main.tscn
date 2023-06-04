@@ -8,6 +8,7 @@
 [node name="Main" type="Node2D"]
 
 [node name="DebugUI" parent="." instance=ExtResource( 4 )]
+player_node_path = NodePath("../TestLevel/PlayerController")
 
 [node name="MainUI" parent="." instance=ExtResource( 3 )]
 visible = false
@@ -15,8 +16,6 @@ visible = false
 [node name="AudioTest" parent="." instance=ExtResource( 1 )]
 
 [node name="TestLevel" parent="." instance=ExtResource( 2 )]
-
-[node name="CollisionShape2D" parent="TestLevel/RespawnArea2D" index="0"]
-position = Vector2( 520, 747 )
+position = Vector2( 0, 0 )
 
 [editable path="TestLevel"]
