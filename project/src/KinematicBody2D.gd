@@ -4,7 +4,7 @@ export var SPEED := 10
 export var GRAVITY := 120
 export var JUMP := 100
 export var FRICTION := 0.1
-var velocity = Vector2(0, GRAVITY)
+var velocity = Vector2()
 var last_position = Vector2()
 
 func _physics_process(delta):
@@ -19,7 +19,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_up"):
 		if is_on_floor():
 			velocity.y = -JUMP
-	velocity = move_and_slide(velocity, Vector2(0, -1))
+	velocity = move_and_slide(velocity, Vector2.UP)
 
 func _on_Timer_timeout():
 	if is_on_floor():

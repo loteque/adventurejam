@@ -1,0 +1,124 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/DebugUI.gd" type="Script" id=1]
+
+[node name="DebugUI" type="CanvasLayer"]
+script = ExtResource( 1 )
+speed_entry_node_path = NodePath("TabContainer/Player/Entries/Speed/SpeedLineEdit")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+margin_right = 166.0
+margin_bottom = 180.0
+tab_align = 0
+all_tabs_in_front = true
+
+[node name="Player" type="VBoxContainer" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Label" type="Label" parent="TabContainer/Player"]
+margin_right = 158.0
+margin_bottom = 14.0
+
+[node name="Entries" type="VBoxContainer" parent="TabContainer/Player"]
+margin_top = 18.0
+margin_right = 158.0
+margin_bottom = 126.0
+
+[node name="Speed" type="HBoxContainer" parent="TabContainer/Player/Entries"]
+margin_right = 158.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="TabContainer/Player/Entries/Speed"]
+margin_top = 5.0
+margin_right = 39.0
+margin_bottom = 19.0
+text = "SPEED"
+
+[node name="SpeedLineEdit" type="LineEdit" parent="TabContainer/Player/Entries/Speed"]
+margin_left = 43.0
+margin_right = 101.0
+margin_bottom = 24.0
+text = "30.00"
+
+[node name="Gravity" type="HBoxContainer" parent="TabContainer/Player/Entries"]
+margin_top = 28.0
+margin_right = 158.0
+margin_bottom = 52.0
+
+[node name="Label" type="Label" parent="TabContainer/Player/Entries/Gravity"]
+margin_top = 5.0
+margin_right = 54.0
+margin_bottom = 19.0
+text = "GRAVITY"
+
+[node name="GravityLineEdit" type="LineEdit" parent="TabContainer/Player/Entries/Gravity"]
+margin_left = 58.0
+margin_right = 116.0
+margin_bottom = 24.0
+text = "30.00"
+
+[node name="Jump" type="HBoxContainer" parent="TabContainer/Player/Entries"]
+margin_top = 56.0
+margin_right = 158.0
+margin_bottom = 80.0
+
+[node name="Label" type="Label" parent="TabContainer/Player/Entries/Jump"]
+margin_top = 5.0
+margin_right = 33.0
+margin_bottom = 19.0
+text = "JUMP"
+
+[node name="JumpLineEdit" type="LineEdit" parent="TabContainer/Player/Entries/Jump"]
+margin_left = 37.0
+margin_right = 95.0
+margin_bottom = 24.0
+text = "30.00"
+
+[node name="Friction" type="HBoxContainer" parent="TabContainer/Player/Entries"]
+margin_top = 84.0
+margin_right = 158.0
+margin_bottom = 108.0
+
+[node name="Label" type="Label" parent="TabContainer/Player/Entries/Friction"]
+margin_top = 5.0
+margin_right = 61.0
+margin_bottom = 19.0
+text = "FRICTION"
+
+[node name="FrictionLineEdit" type="LineEdit" parent="TabContainer/Player/Entries/Friction"]
+margin_left = 65.0
+margin_right = 123.0
+margin_bottom = 24.0
+text = "30.00"
+
+[node name="World" type="VBoxContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Entries" type="VBoxContainer" parent="TabContainer/World"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Lighting" type="HBoxContainer" parent="TabContainer/World/Entries"]
+margin_right = 158.0
+margin_bottom = 40.0
+
+[node name="CheckButton" type="CheckButton" parent="TabContainer/World/Entries/Lighting"]
+margin_left = 50.0
+margin_right = 126.0
+margin_bottom = 40.0
+
+[connection signal="gui_input" from="TabContainer/Player/Entries/Speed/SpeedLineEdit" to="." method="_on_SpeedLineEdit_gui_input"]
+[connection signal="gui_input" from="TabContainer/Player/Entries/Gravity/GravityLineEdit" to="." method="_on_GravityLineEdit_gui_input"]
+[connection signal="gui_input" from="TabContainer/Player/Entries/Jump/JumpLineEdit" to="." method="_on_JumpLineEdit_gui_input"]
+[connection signal="gui_input" from="TabContainer/Player/Entries/Friction/FrictionLineEdit" to="." method="_on_FrictionLineEdit_gui_input"]
