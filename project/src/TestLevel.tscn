@@ -75,8 +75,8 @@ texture = ExtResource( 7 )
 centered = false
 
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
-offset = Vector2( 0, 400 )
-transform = Transform2D( 1, 0, 0, 1, 0, 400 )
+offset = Vector2( 0, 280 )
+transform = Transform2D( 1, 0, 0, 1, 0, 280 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
 motion_mirroring = Vector2( 480, 0 )

@@ -3,6 +3,7 @@
 [ext_resource path="res://src/DebugUI.gd" type="Script" id=1]
 
 [node name="DebugUI" type="CanvasLayer"]
+visible = false
 script = ExtResource( 1 )
 speed_entry_node_path = NodePath("TabContainer/Player/Entries/Speed/SpeedLineEdit")
 
