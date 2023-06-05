@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
+[ext_resource path="res://src/DryArea.tscn" type="PackedScene" id=2]
 [ext_resource path="res://asset/jungle tileset.png" type="Texture" id=3]
 [ext_resource path="res://asset/Background.png" type="Texture" id=4]
 [ext_resource path="res://asset/Drawing_28_3_1.png" type="Texture" id=5]
+[ext_resource path="res://src/TestLevel.gd" type="Script" id=6]
 [ext_resource path="res://asset/Trees.png" type="Texture" id=7]
 [ext_resource path="res://asset/Background2_Blank.png" type="Texture" id=8]
 [ext_resource path="res://asset/City.png" type="Texture" id=9]
@@ -67,6 +69,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 extents = Vector2( 1450, 36.5 )
 
 [node name="TestLevel" type="Node2D"]
+script = ExtResource( 6 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -127,11 +130,25 @@ local_coords = false
 process_material = SubResource( 6 )
 texture = SubResource( 8 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 544.0
+margin_top = 224.0
+margin_right = 672.0
+margin_bottom = 258.0
+color = Color( 0.223529, 0.109804, 0, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_left = 736.0
+margin_top = 223.0
+margin_right = 832.0
+margin_bottom = 257.0
+color = Color( 0.223529, 0.109804, 0, 1 )
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 3 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524310, 0, 0, 524311, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524315, 0, 0, 524316, 0, 0, 524317, 0, 0, 524318, 0, 0, 524319, 0, 0, 524320, 0, 0, 524321, 0, 0, 524322, 0, 0, 524323, 0, 0, 524324, 0, 0, 524325, 0, 0, 524326, 0, 0, 524327, 0, 0, 524328, 0, 0, 524329, 0, 0, 524330, 0, 0, 524331, 0, 0, 524332, 0, 0, 524333, 0, 0 )
+tile_data = PoolIntArray( 393233, 0, 0, 393234, 0, 0, 393235, 0, 0, 393236, 0, 0, 393239, 0, 0, 393240, 0, 0, 393241, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524310, 0, 0, 524311, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524315, 0, 0, 524316, 0, 0, 524317, 0, 0, 524318, 0, 0, 524319, 0, 0, 524320, 0, 0, 524321, 0, 0, 524322, 0, 0, 524323, 0, 0, 524324, 0, 0, 524325, 0, 0, 524326, 0, 0, 524327, 0, 0, 524328, 0, 0, 524329, 0, 0, 524330, 0, 0, 524331, 0, 0, 524332, 0, 0, 524333, 0, 0 )
 
 [node name="RespawnArea2D" type="Area2D" parent="." groups=["Respawn"]]
 position = Vector2( 858, 423 )
@@ -139,3 +156,11 @@ position = Vector2( 858, 423 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RespawnArea2D"]
 position = Vector2( 17, 126 )
 shape = SubResource( 5 )
+
+[node name="DryArea" parent="." groups=["DryArea"] instance=ExtResource( 2 )]
+position = Vector2( 608, 241 )
+scale = Vector2( 6.3, 3 )
+
+[node name="DryArea2" parent="." groups=["DryArea"] instance=ExtResource( 2 )]
+position = Vector2( 784, 242 )
+scale = Vector2( 4.7, 3 )

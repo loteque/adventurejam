@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://asset/landing.png" type="Texture" id=2]
+[ext_resource path="res://src/PlayerUI.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.5, 14.5 )
@@ -32,19 +33,26 @@ drag_margin_top = 0.16
 drag_margin_right = 0.16
 drag_margin_bottom = 0.16
 
-[node name="RespawnTimer" type="Timer" parent="."]
-autostart = true
-
-[node name="JumpTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 12.5, -17.5 )
 shape = SubResource( 4 )
 
-[connection signal="timeout" from="RespawnTimer" to="." method="_on_Timer_timeout"]
-[connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="RespawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="RustTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="PlayerUI" parent="." instance=ExtResource( 3 )]
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
+[connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="RustTimer" to="." method="_on_RustTimer_timeout"]

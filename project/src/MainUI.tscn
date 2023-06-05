@@ -7,12 +7,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
-[node name="HelloWorld" type="Label" parent="."]
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_top = -15.5
-margin_bottom = 15.5
-text = "Hola!"
-align = 1
+[node name="ToDo" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -160.0
+margin_top = 10.0
+margin_right = 160.0
+margin_bottom = 99.0
+text = "x1. Water Area
+  2. Rust Meter
+  3. Oil Cans      
+  4. Player UI
+  5. Start Screen
+  6. Pause Screen
+  7. Settings Screen"
 valign = 1
