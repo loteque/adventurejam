@@ -1,13 +1,7 @@
 extends CanvasLayer
 
-#export var FRICTION := 0.1
-#export var JUMP := 32
-#export var COYOTE_TIME := 0.1
-#export var JUMP_DISTANCE := 100
-#export var TIME_TO_JUMP_PEAK := 0.128
-
 export (NodePath) var player_label_node_path = "TabContainer/Player/Label"
-export (NodePath) var player_node_path = "../TestLevel/PlayerController"
+export (NodePath) var player_node_path = "../PlayerController"
 
 export (NodePath) var friction_entry_node_path = "TabContainer/Player/Entries/Friction/FrictionLineEdit"
 export (NodePath) var jump_entry_node_path = "TabContainer/Player/Entries/Jump/JumpLineEdit"

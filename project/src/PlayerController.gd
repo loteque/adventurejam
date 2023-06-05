@@ -8,7 +8,7 @@ export var FRICTION := 0.1
 export var COYOTE_TIME := 0.1
 export var JUMP := 32
 export var JUMP_DISTANCE := 100
-export var TIME_TO_JUMP_PEAK := 0.5
+export var TIME_TO_JUMP_PEAK := 0.2
 
 var GRAVITY : float
 var JUMP_SPEED : float
