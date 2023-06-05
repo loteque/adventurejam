@@ -36,7 +36,7 @@ drag_margin_bottom = 0.16
 autostart = true
 
 [node name="JumpTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.5
 one_shot = true
 
 [node name="Area2D" type="Area2D" parent="."]

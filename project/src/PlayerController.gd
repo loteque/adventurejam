@@ -1,14 +1,14 @@
 extends KinematicBody2D
 
+export (NodePath) var jump_timer_node_path := "JumpTimer"
+
+onready var jump_timer: Node = get_node(jump_timer_node_path)
+
 export var SPEED := 10
 export var GRAVITY := 120
 export var JUMP := 100
 export var FRICTION := 0.1
-export var COYOTE_TIME := 5
-
-export (NodePath) var jump_timer_node_path := "JumpTimer"
-
-onready var jump_timer: Node = get_node(jump_timer_node_path)
+export var COYOTE_TIME := 0.1
 
 var velocity: Vector2
 var last_position: Vector2
@@ -25,6 +25,9 @@ func _physics_process(delta):
 		can_jump = true
 	elif can_jump == true && jump_timer.is_stopped():
 		jump_timer.start()
+	
+	if Input.is_action_just_released("jump") && velocity.y < 0:
+		velocity.y = 0
 	
 	if Input.is_action_pressed("jump") && can_jump:
 		velocity.y = -JUMP
