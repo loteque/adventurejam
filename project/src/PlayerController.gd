@@ -84,8 +84,14 @@ func _on_Area2D_area_exited(area):
 
 func _on_RustTimer_timeout():
 	var rust_meter_bar = player_ui.get_node("RustMeterContainer/RustMeter/RustMeterBar")
-	rust_level += 1
+	rust_level = clamp(rust_level + 1, 0, 100)
 	rust_meter_bar.rect_size.x = float(rust_level)
+	JUMP_DISTANCE = 100 - rust_level
+	if rust_level == 90:
+		JUMP = 5
 	if rust_level == 100:
+		yield(get_tree().create_timer(5), "timeout")
 		get_tree().reload_current_scene()
+	init_vars()
 	print("RUST METER: " + str(rust_level))
+	print("JUMP_DISTANCE: " + str(JUMP_DISTANCE))
