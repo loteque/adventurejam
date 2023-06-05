@@ -3,13 +3,14 @@
 [ext_resource path="res://src/DebugUI.gd" type="Script" id=1]
 
 [node name="DebugUI" type="CanvasLayer"]
-visible = false
 script = ExtResource( 1 )
 speed_entry_node_path = NodePath("TabContainer/Player/Entries/Speed/SpeedLineEdit")
 
 [node name="TabContainer" type="TabContainer" parent="."]
+self_modulate = Color( 1, 1, 1, 0.588235 )
 margin_right = 166.0
-margin_bottom = 180.0
+margin_bottom = 190.0
+rect_clip_content = true
 tab_align = 0
 all_tabs_in_front = true
 
@@ -107,7 +108,7 @@ margin_right = -4.0
 margin_bottom = -4.0
 
 [node name="Entries" type="VBoxContainer" parent="TabContainer/World"]
-margin_right = 40.0
+margin_right = 158.0
 margin_bottom = 40.0
 
 [node name="Lighting" type="HBoxContainer" parent="TabContainer/World/Entries"]
@@ -115,8 +116,7 @@ margin_right = 158.0
 margin_bottom = 40.0
 
 [node name="CheckButton" type="CheckButton" parent="TabContainer/World/Entries/Lighting"]
-margin_left = 50.0
-margin_right = 126.0
+margin_right = 76.0
 margin_bottom = 40.0
 
 [connection signal="gui_input" from="TabContainer/Player/Entries/Speed/SpeedLineEdit" to="." method="_on_SpeedLineEdit_gui_input"]

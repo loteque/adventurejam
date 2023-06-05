@@ -1,18 +1,18 @@
 extends CanvasLayer
 
+export (NodePath) var player_label_node_path = "TabContainer/Player/Label"
 export (NodePath) var player_node_path = "../TestLevel/KinematicBody2D"
 export (NodePath) var speed_entry_node_path = "TabContainer/Player/Entries/Speed/LineEdit"
 export (NodePath) var gravity_entry_node_path = "TabContainer/Player/Entries/Gravity/GravityLineEdit"
 export (NodePath) var jump_entry_node_path = "TabContainer/Player/Entries/Jump/JumpLineEdit"
 export (NodePath) var friction_entry_node_path = "TabContainer/Player/Entries/Friction/FrictionLineEdit"
-export (NodePath) var player_label_node_path = "TabContainer/Player/Label"
 
+onready var player_label_node := get_node(player_label_node_path)
 onready var player_node := get_node(player_node_path)
 onready var speed_entry_node := get_node(speed_entry_node_path)
 onready var gravity_entry_node := get_node(gravity_entry_node_path)
 onready var jump_entry_node := get_node(jump_entry_node_path)
 onready var friction_entry_node := get_node(friction_entry_node_path)
-onready var player_label_node := get_node(player_label_node_path)
 
 var current_focus = null
 
@@ -46,7 +46,7 @@ func find_next_entry(target_node):
 		next_entry = parent.get_child(target_index + 1).get_child(1)
 	else:
 		next_entry = first_entry
-
+	
 	return next_entry
 	
 # end (helper functions)

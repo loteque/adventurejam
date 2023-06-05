@@ -18,6 +18,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -100.0
 color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DPad" type="Node2D" parent="TouchController"]
 position = Vector2( 47, 49 )
@@ -99,6 +102,9 @@ __meta__ = {
 [node name="SystemButtons" type="Node2D" parent="TouchController"]
 position = Vector2( 160, 76 )
 scale = Vector2( 1.2, 1.2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Select" type="TouchScreenButton" parent="TouchController/SystemButtons"]
 position = Vector2( -13.3125, -10 )
@@ -106,6 +112,9 @@ scale = Vector2( 0.00325521, 19.8684 )
 normal = SubResource( 1 )
 pressed = SubResource( 2 )
 action = "ui_debug"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Start" type="TouchScreenButton" parent="TouchController/SystemButtons"]
 position = Vector2( 13.375, 9.99998 )
@@ -114,3 +123,6 @@ scale = Vector2( 0.003261, 19.8684 )
 normal = SubResource( 1 )
 pressed = SubResource( 2 )
 action = "ui_cancel"
+__meta__ = {
+"_edit_lock_": true
+}

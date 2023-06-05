@@ -32,8 +32,12 @@ drag_margin_top = 0.16
 drag_margin_right = 0.16
 drag_margin_bottom = 0.16
 
-[node name="Timer" type="Timer" parent="."]
+[node name="RespawnTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -41,5 +45,6 @@ autostart = true
 position = Vector2( 12.5, -17.5 )
 shape = SubResource( 4 )
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
