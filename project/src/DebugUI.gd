@@ -1,18 +1,29 @@
 extends CanvasLayer
 
+#export var FRICTION := 0.1
+#export var JUMP := 32
+#export var COYOTE_TIME := 0.1
+#export var JUMP_DISTANCE := 100
+#export var TIME_TO_JUMP_PEAK := 0.128
+
 export (NodePath) var player_label_node_path = "TabContainer/Player/Label"
-export (NodePath) var player_node_path = "../TestLevel/KinematicBody2D"
-export (NodePath) var speed_entry_node_path = "TabContainer/Player/Entries/Speed/LineEdit"
-export (NodePath) var gravity_entry_node_path = "TabContainer/Player/Entries/Gravity/GravityLineEdit"
-export (NodePath) var jump_entry_node_path = "TabContainer/Player/Entries/Jump/JumpLineEdit"
+export (NodePath) var player_node_path = "../TestLevel/PlayerController"
+
 export (NodePath) var friction_entry_node_path = "TabContainer/Player/Entries/Friction/FrictionLineEdit"
+export (NodePath) var jump_entry_node_path = "TabContainer/Player/Entries/Jump/JumpLineEdit"
+export (NodePath) var coyote_time_entry_node_path = "TabContainer/Player/Entries/CoyoteTime/CoyoteTimeLineEdit"
+export (NodePath) var jump_distance_entry_node_path = "TabContainer/Player/Entries/JumpDistance/JumpDistanceLineEdit"
+export (NodePath) var time_to_jump_peak_entry_node_path = "TabContainer/Player/Entries/TimeToJumpPeak/TimeToJumpPeakLineEdit"
 
 onready var player_label_node := get_node(player_label_node_path)
 onready var player_node := get_node(player_node_path)
-onready var speed_entry_node := get_node(speed_entry_node_path)
-onready var gravity_entry_node := get_node(gravity_entry_node_path)
-onready var jump_entry_node := get_node(jump_entry_node_path)
+
 onready var friction_entry_node := get_node(friction_entry_node_path)
+onready var jump_entry_node := get_node(jump_entry_node_path)
+onready var coyote_time_entry_node := get_node(coyote_time_entry_node_path)
+onready var jump_distance_entry_node := get_node(jump_distance_entry_node_path)
+onready var time_to_jump_peak_entry_node := get_node(time_to_jump_peak_entry_node_path)
+
 
 var current_focus = null
 
@@ -54,10 +65,11 @@ func find_next_entry(target_node):
 
 func _ready():
 	player_label_node.text = str(player_node.name)
-	speed_entry_node.text = str(player_node.SPEED)
-	gravity_entry_node.text = str(player_node.GRAVITY)
-	jump_entry_node.text = str(player_node.JUMP)
 	friction_entry_node.text = str(player_node.FRICTION)
+	jump_entry_node.text = str(player_node.JUMP)
+	coyote_time_entry_node.text = str(player_node.COYOTE_TIME)
+	jump_distance_entry_node.text = str(player_node.JUMP_DISTANCE)
+	time_to_jump_peak_entry_node.text = str(player_node.TIME_TO_JUMP_PEAK)
 
 func _input(event):
 	var debug_ui_should_open = InputMap.event_is_action(event, "ui_debug") and event.is_pressed() and !visible
@@ -65,22 +77,17 @@ func _input(event):
 	
 	if debug_ui_should_open:
 		show()
-		speed_entry_node.grab_focus()
+		friction_entry_node.grab_focus()
+	
 	elif debug_ui_should_close:
+		player_node.init_vars()
 		hide()
 
-func _on_SpeedLineEdit_gui_input(event):
-	var entry_container = speed_entry_node.get_parent()
-	var entry_data = speed_entry_node.text
+func _on_FrictionLineEdit_gui_input(event):
+	var entry_container = friction_entry_node.get_parent()
+	var entry_data = friction_entry_node.text
 	if InputMap.event_is_action(event, "ui_accept") and event.is_pressed():
-		player_node.SPEED = int(entry_data)
-		find_next_entry(entry_container).grab_focus()
-
-func _on_GravityLineEdit_gui_input(event):
-	var entry_container = gravity_entry_node.get_parent()
-	var entry_data = gravity_entry_node.text
-	if InputMap.event_is_action(event, "ui_accept") and event.is_pressed():
-		player_node.GRAVITY = int(entry_data)
+		player_node.FRICTION = float(entry_data)
 		find_next_entry(entry_container).grab_focus()
 
 func _on_JumpLineEdit_gui_input(event):
@@ -90,9 +97,23 @@ func _on_JumpLineEdit_gui_input(event):
 		player_node.JUMP = int(entry_data)
 		find_next_entry(entry_container).grab_focus()
 
-func _on_FrictionLineEdit_gui_input(event):
-	var entry_container = friction_entry_node.get_parent()
-	var entry_data = friction_entry_node.text
+func _on_CoyoteTimeLineEdit_gui_input(event):
+	var entry_container = coyote_time_entry_node.get_parent()
+	var entry_data = coyote_time_entry_node.text
 	if InputMap.event_is_action(event, "ui_accept") and event.is_pressed():
-		player_node.FRICTION = float(entry_data)
+		player_node.COYOTE_TIME = float(entry_data)
+		find_next_entry(entry_container).grab_focus()
+
+func _on_JumpDistanceLineEdit_gui_input(event):
+	var entry_container = jump_distance_entry_node.get_parent()
+	var entry_data = jump_distance_entry_node.text
+	if InputMap.event_is_action(event, "ui_accept") and event.is_pressed():
+		player_node.JUMP_DISTANCE = int(entry_data)
+		find_next_entry(entry_container).grab_focus()
+
+func _on_TimeToJumpPeakLineEdit_gui_input(event):
+	var entry_container = time_to_jump_peak_entry_node.get_parent()
+	var entry_data = time_to_jump_peak_entry_node.text
+	if InputMap.event_is_action(event, "ui_accept") and event.is_pressed():
+		player_node.TIME_TO_JUMP_PEAK = float(entry_data)
 		find_next_entry(entry_container).grab_focus()

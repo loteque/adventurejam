@@ -11,7 +11,6 @@
 [node name="TouchUI" parent="." instance=ExtResource( 5 )]
 
 [node name="DebugUI" parent="." instance=ExtResource( 4 )]
-player_node_path = NodePath("../TestLevel/PlayerController")
 
 [node name="MainUI" parent="." instance=ExtResource( 3 )]
 visible = false

@@ -4,18 +4,28 @@ export (NodePath) var jump_timer_node_path := "JumpTimer"
 
 onready var jump_timer: Node = get_node(jump_timer_node_path)
 
-export var SPEED := 10
-export var GRAVITY := 120
-export var JUMP := 100
 export var FRICTION := 0.1
 export var COYOTE_TIME := 0.1
+export var JUMP := 32
+export var JUMP_DISTANCE := 100
+export var TIME_TO_JUMP_PEAK := 0.5
+
+var GRAVITY : float
+var JUMP_SPEED : float
+var SPEED : float
 
 var velocity: Vector2
 var last_position: Vector2
 var can_jump: bool
 
-func _ready():
+func init_vars():
 	jump_timer.wait_time = COYOTE_TIME
+	GRAVITY = (2*JUMP)/pow(TIME_TO_JUMP_PEAK, 2)
+	JUMP_SPEED = GRAVITY * TIME_TO_JUMP_PEAK
+	SPEED = JUMP_DISTANCE / (2 * TIME_TO_JUMP_PEAK)
+	
+func _ready():
+	init_vars()
 
 func _physics_process(delta):
 	
@@ -30,12 +40,12 @@ func _physics_process(delta):
 		velocity.y = 0
 	
 	if Input.is_action_pressed("jump") && can_jump:
-		velocity.y = -JUMP
+		velocity.y = -JUMP_SPEED
 	
 	if Input.is_action_pressed("ui_right"):
-		velocity.x += SPEED
+		velocity.x = lerp(velocity.x, SPEED, FRICTION)
 	elif Input.is_action_pressed("ui_left"):
-		velocity.x -= SPEED
+		velocity.x = lerp(velocity.x, -SPEED, FRICTION)
 	else:
 		velocity.x = lerp(velocity.x, 0, FRICTION)
 	
