@@ -1,6 +1,7 @@
 [gd_scene format=2]
 
 [node name="MainUI" type="CanvasLayer"]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -11,14 +12,18 @@ color = Color( 0, 0, 0, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -160.0
-margin_top = 10.0
 margin_right = 160.0
-margin_bottom = 99.0
+margin_bottom = 201.0
 text = "x1. Water Area
-  2. Rust Meter
+x2. Rust Meter
   3. Oil Cans      
-  4. Player UI
+x4. Player UI
   5. Start Screen
   6. Pause Screen
-  7. Settings Screen"
+  7. Settings Screen
+  8. Level Design
+  9. Implmnt Sprites
+  10. Tile map
+  11. Implmnt Music
+  12. Implmnt SFX"
 valign = 1

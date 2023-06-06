@@ -91,7 +91,7 @@ func _on_RustTimer_timeout():
 		JUMP = 5
 	if rust_level == 100:
 		yield(get_tree().create_timer(5), "timeout")
-		get_tree().reload_current_scene()
+		player_ui.get_node("Rusted").show()
 	init_vars()
 	print("RUST METER: " + str(rust_level))
 	print("JUMP_DISTANCE: " + str(JUMP_DISTANCE))
