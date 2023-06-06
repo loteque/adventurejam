@@ -65,7 +65,7 @@ margin_left = -8.0
 margin_top = -14.0
 custom_colors/font_color = Color( 0.282353, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0.462745, 0.462745, 0.462745, 1 )
-text = "2"
+text = "0"
 
 [node name="Rusted" type="NinePatchRect" parent="."]
 visible = false

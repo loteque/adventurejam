@@ -1,7 +1,6 @@
 [gd_scene format=2]
 
 [node name="MainUI" type="CanvasLayer"]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -14,9 +13,9 @@ anchor_right = 0.5
 margin_left = -160.0
 margin_right = 160.0
 margin_bottom = 201.0
-text = "x1. Water Area
+text = "  1. Water Area
 x2. Rust Meter
-  3. Oil Cans      
+x3. Oil Cans      
 x4. Player UI
   5. Start Screen
   6. Pause Screen

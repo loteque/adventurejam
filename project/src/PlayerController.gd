@@ -4,17 +4,20 @@ export (NodePath) var main_node_path := ".."
 export (NodePath) var jump_timer_node_path := "JumpTimer"
 export (NodePath) var rust_timer_node_path := "RustTimer"
 export (NodePath) var player_ui_node_path := "PlayerUI"
+export (NodePath) var player_area_node_path := "Area2D"
 
 onready var main: Node = get_node(main_node_path)
 onready var jump_timer: Node = get_node(jump_timer_node_path)
 onready var rust_timer: Node = get_node(rust_timer_node_path)
 onready var player_ui: Node = get_node(player_ui_node_path)
+onready var player_area: Node = get_node(player_area_node_path)
 
 export var FRICTION := 0.1
 export var COYOTE_TIME := 0.1
 export var JUMP := 32
 export var JUMP_DISTANCE := 100
 export var TIME_TO_JUMP_PEAK := 0.2
+export var INVENTORY_MAX := 10
 
 var GRAVITY : float
 var JUMP_SPEED : float
@@ -24,6 +27,8 @@ var velocity: Vector2
 var last_position: Vector2
 var can_jump: bool
 var rust_level: int = 0
+
+var antirust_inventory: Array = [0, 0]
 
 func init_vars():
 	jump_timer.wait_time = COYOTE_TIME
@@ -35,7 +40,7 @@ func _ready():
 	init_vars()
 	if main.is_raining == true:
 		rust_timer.start()
-
+	
 func _physics_process(delta):
 	
 	velocity.y += GRAVITY * delta
@@ -44,6 +49,28 @@ func _physics_process(delta):
 		can_jump = true
 	elif can_jump == true && jump_timer.is_stopped():
 		jump_timer.start()
+	
+	if Input.is_action_just_pressed("ui_down"):
+		print("ui_down")
+		print("in_pickup_area(): " + str(in_pickup_area()))
+		print("get_pickup_node(): " + str(get_pickup_node()))
+		print("--------------------")
+		var rust_meter_bar = player_ui.get_node("RustMeterContainer/RustMeter/RustMeterBar")
+		var antirust_counter = player_ui.get_node("OilMeter/Counter")
+		
+		if in_pickup_area() && antirust_inventory[0] < INVENTORY_MAX:
+			antirust_inventory[0] = antirust_inventory[0] + 1
+			antirust_inventory[1] = get_pickup_node().strength
+			antirust_counter.text = str(antirust_inventory[0])
+			get_pickup_node().queue_free()
+			print("picked up antirust: " + str(antirust_inventory))
+		elif !in_pickup_area() && antirust_inventory[0] > 0:
+			antirust_inventory[0] -= 1
+			rust_level -= antirust_inventory[1]
+			rust_meter_bar.rect_size.x = float(rust_level)
+			antirust_counter.text = str(antirust_inventory[0])
+			init_vars()
+			print("used antirust")
 	
 	if Input.is_action_just_released("jump") && velocity.y < 0:
 		velocity.y = 0
@@ -60,6 +87,23 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 
+# PlayerController Helper Functions
+func in_pickup_area():
+	var areas = player_area.get_overlapping_areas()
+	for area in areas:
+		if area.get_parent().is_in_group("Pickup"): 
+			return true
+	return false
+
+func get_pickup_node():
+	var pickup_node = null
+	var areas = player_area.get_overlapping_areas()
+	for area in areas:
+		if area.get_parent().is_in_group("Pickup"): 
+			pickup_node = area.get_parent()
+	return pickup_node
+
+# Signal Callbacks
 func _on_Timer_timeout():
 	if is_on_floor():
 		last_position = position
