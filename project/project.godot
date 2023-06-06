@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Path2D",
+"class": "SmoothPath",
+"language": "GDScript",
+"path": "res://src/SmoothPath.gd"
+} ]
+_global_script_class_icons={
+"SmoothPath": ""
+}
+
 [application]
 
 config/name="adventurejam"

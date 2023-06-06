@@ -47,7 +47,6 @@ one_shot = true
 autostart = true
 
 [node name="RustTimer" type="Timer" parent="."]
-wait_time = 0.1
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

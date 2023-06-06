@@ -34,7 +34,6 @@ color = Color( 0.196078, 0.196078, 0.196078, 0.537255 )
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -7.0
-margin_right = 20.0
 margin_bottom = 7.0
 color = Color( 0.423529, 0.14902, 0, 1 )
 
