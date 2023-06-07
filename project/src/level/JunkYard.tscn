@@ -42,6 +42,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 [node name="Level" type="Node2D"]
 script = ExtResource( 11 )
 is_raining = false
+theme_song = 1
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://asset/Platforming_Level_Sketch2.wav" type="AudioStream" id=1]
 [ext_resource path="res://asset/Junkyard_Sketch2.ogg" type="AudioStream" id=2]
+[ext_resource path="res://src/MusicManager.gd" type="Script" id=3]
 
 [node name="MusicManager" type="Node"]
+script = ExtResource( 3 )
+
+[node name="JunkyardTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
 
 [node name="CityTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 autoplay = true
-
-[node name="JunkyardTheme" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
