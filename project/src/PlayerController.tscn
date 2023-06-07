@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://asset/player_idle_rust.png" type="Texture" id=2]
+[ext_resource path="res://src/RustTimer.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.5, 10.25 )
@@ -47,6 +48,8 @@ one_shot = true
 autostart = true
 
 [node name="RustTimer" type="Timer" parent="."]
+wait_time = 0.7
+script = ExtResource( 3 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

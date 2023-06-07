@@ -134,9 +134,10 @@ func get_pickup_node() -> Node:
 			pickup_node = area.get_parent()
 	return pickup_node
 
-func reset_rust_timer():
-	rust_timer.wait_time = 1.0
-	rust_timer.stop()
+func reset_rust_timer(stop: bool = true):
+	rust_timer.wait_time = rust_timer.default_wait_time
+	if stop:
+		rust_timer.stop()
 	
 # Signal Callbacks
 func _on_started_raining():
@@ -177,13 +178,14 @@ func _on_Area2D_area_entered(area):
 	print("_on_area2D_area_entered: " + str(area.get_parent()))
 
 func _on_Area2D_area_exited(area):
-	if area.is_in_group("Water") && !is_raining:
+	if area.is_in_group("Water"):
 		if is_raining:
-			rust_timer.wait_time = rust_timer.wait_time + (rust_timer.wait_time / 4)
+			reset_rust_timer(false)
 		else:
 			rust_timer.stop()
 	if area.is_in_group("DryArea") and is_raining:
 		rust_timer.start()
+	print(str(rust_timer.wait_time))
 
 func _on_RustTimer_timeout():
 	var rust_meter_bar = player_ui.get_node("RustMeterContainer/RustMeter/RustMeterBar")
@@ -196,5 +198,5 @@ func _on_RustTimer_timeout():
 		yield(get_tree().create_timer(5), "timeout")
 		player_ui.get_node("Rusted").show()
 	init_vars()
-	print("RUST METER: " + str(rust_level))
-	print("JUMP_DISTANCE: " + str(JUMP_DISTANCE))
+#	print("RUST METER: " + str(rust_level))
+#	print("JUMP_DISTANCE: " + str(JUMP_DISTANCE))
