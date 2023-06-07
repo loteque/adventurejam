@@ -27,6 +27,7 @@ var velocity: Vector2
 var last_position: Vector2
 var can_jump: bool
 var rust_level: int = 0
+var is_raining: bool = false
 
 var antirust_inventory: Array = [0, 0]
 
@@ -135,6 +136,7 @@ func get_pickup_node() -> Node:
 # Signal Callbacks
 func _on_started_raining():
 	rust_timer.start()
+	is_raining = true
 
 func _on_Timer_timeout():
 	if is_on_floor():
@@ -148,7 +150,10 @@ func _on_Area2D_area_entered(area):
 		last_position.y -= 85
 		position = last_position
 	if area.is_in_group("Water"):
-		rust_timer.start()
+		if is_raining:
+			rust_timer.wait_time = rust_timer.wait_time - (rust_timer.wait_time / 4)
+		else:
+			rust_timer.start()
 	if area.is_in_group("DryArea"):
 		rust_timer.stop()
 		print("entered dry area")
@@ -160,9 +165,12 @@ func _on_Area2D_area_entered(area):
 	print("_on_area2D_area_entered: " + str(area.get_parent()))
 
 func _on_Area2D_area_exited(area):
-	if area.is_in_group("Water"):
-		rust_timer.stop()
-	if area.is_in_group("DryArea") and main.is_raining:
+	if area.is_in_group("Water") && !is_raining:
+		if is_raining:
+			rust_timer.wait_time = rust_timer.wait_time + (rust_timer.wait_time / 4)
+		else:
+			rust_timer.stop()
+	if area.is_in_group("DryArea") and is_raining:
 		rust_timer.start()
 
 func _on_RustTimer_timeout():
