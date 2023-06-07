@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/MusicManager.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/DebugUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/TouchUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/ui/DebugUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/ui/TouchUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/PlayerController.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Main.gd" type="Script" id=7]
-[ext_resource path="res://src/PlayerUI.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/ui/PlayerUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/LevelManager.gd" type="Script" id=9]
 
 [node name="Main" type="Node2D"]

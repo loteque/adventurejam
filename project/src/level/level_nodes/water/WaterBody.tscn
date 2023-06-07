@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/SmoothPath.gd" type="Script" id=1]
-[ext_resource path="res://src/WaterBody.gd" type="Script" id=2]
-[ext_resource path="res://src/water_shader.tres" type="Shader" id=3]
+[ext_resource path="res://src/tool_script/SmoothPath.gd" type="Script" id=1]
+[ext_resource path="res://src/level/level_nodes/water/WaterBody.gd" type="Script" id=2]
+[ext_resource path="res://src/level/level_nodes/water/water_shader.tres" type="Shader" id=3]
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 3 )

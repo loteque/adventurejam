@@ -8,9 +8,9 @@ onready var player_controller: = get_node(player_controller_node_path)
 
 onready var scene_node: Node
 
-var scene_paths = ["res://src/Levels/JunkYard.tscn", 
-				   "res://src/Levels/Forest.tscn", 
-				   "res://src/Levels/City.tscn"]
+var scene_paths = ["res://src/level/JunkYard.tscn", 
+				   "res://src/level/Forest.tscn", 
+				   "res://src/level/City.tscn"]
 
 var current_scene_paths_index: int = scene_paths.size()
 

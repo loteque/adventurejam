@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/button_gradient_down.tres" type="Gradient" id=1]
-[ext_resource path="res://src/button_gradient_up.tres" type="Gradient" id=2]
+[ext_resource path="res://src/ui/button_gradient_down.tres" type="Gradient" id=1]
+[ext_resource path="res://src/ui/button_gradient_up.tres" type="Gradient" id=2]
 
 [sub_resource type="GradientTexture" id=1]
 gradient = ExtResource( 2 )

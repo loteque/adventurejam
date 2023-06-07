@@ -12,7 +12,7 @@ export (int) var DEPTH = 1000
 
 export var BORDER_THICKNESS = 1.1
 
-onready var water_spring = preload("res://src/WaterSpring.tscn")
+onready var water_spring = preload("res://src/level/level_nodes/water/WaterSpring.tscn")
 onready var water_polygon = $WaterPolygon
 onready var water_border = $WaterBorder
 onready var collider = $WaterBodyArea/CollisionShape2D

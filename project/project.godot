@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Path2D",
 "class": "SmoothPath",
 "language": "GDScript",
-"path": "res://src/SmoothPath.gd"
+"path": "res://src/tool_script/SmoothPath.gd"
 } ]
 _global_script_class_icons={
 "SmoothPath": ""
