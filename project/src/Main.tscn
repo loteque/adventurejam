@@ -33,4 +33,5 @@ visible = false
 [node name="SettingsScreen" parent="." instance=ExtResource( 10 )]
 
 [node name="PlayerController" parent="." instance=ExtResource( 6 )]
+visible = false
 player_ui_node_path = NodePath("../PlayerUI")
