@@ -8,6 +8,10 @@ onready var level_manager: Node = main.get_node("LevelManager")
 func init_vars():
 	level_manager.scene_node = $"."
 
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		main.quit()
+		
 func _ready():
 	init_vars()
 

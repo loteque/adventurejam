@@ -12,7 +12,6 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 7 )
-start_screen_node_path = NodePath("")
 
 [node name="LevelManager" parent="." instance=ExtResource( 1 )]
 

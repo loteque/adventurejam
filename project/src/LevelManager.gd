@@ -22,11 +22,13 @@ func next_scene():
 		load_scene_by_index(current_scene_paths_index + 1)
 		current_scene_paths_index += 1
 		handle_player()
+		handle_player_ui()
 	else:
 		unload_scene(scene_node)
 		load_scene_by_index(0)
 		current_scene_paths_index = 0
 		handle_player()
+		handle_player_ui()
 		
 func load_scene_by_index(scene_paths_index):
 		var packed_scene = load(scene_paths[scene_paths_index])  
@@ -45,3 +47,10 @@ func handle_player():
 	player_controller.hide()
 	player_controller.set_global_position(Vector2(0, 0))
 	player_controller.show()
+
+func handle_player_ui():
+	print(str(scene_node.name))
+	if scene_node.name == "StartScreen" or scene_node.name == "StartScreen2":
+		main.player_ui.hide()
+	else:
+		main.player_ui.show()
