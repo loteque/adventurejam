@@ -1,3 +1,47 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/ui/PauseScreen.gd" type="Script" id=1]
 
 [node name="PauseScreen" type="CanvasLayer"]
+pause_mode = 2
+layer = 2
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -101.0
+margin_right = 32.0
+margin_bottom = -15.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 64.0
+margin_bottom = 14.0
+text = "PAUSED"
+align = 1
+
+[node name="Resume" type="Button" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 64.0
+margin_bottom = 38.0
+text = "Resume"
+
+[node name="Settings" type="Button" parent="VBoxContainer"]
+margin_top = 42.0
+margin_right = 64.0
+margin_bottom = 62.0
+text = "Settings"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+margin_top = 66.0
+margin_right = 64.0
+margin_bottom = 86.0
+text = "Quit"
+
+[connection signal="button_up" from="VBoxContainer/Resume" to="." method="_on_Resume_button_up"]
+[connection signal="button_up" from="VBoxContainer/Settings" to="." method="_on_Settings_button_up"]
+[connection signal="button_up" from="VBoxContainer/Quit" to="." method="_on_Quit_button_up"]

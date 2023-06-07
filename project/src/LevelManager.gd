@@ -8,7 +8,8 @@ onready var player_controller: = get_node(player_controller_node_path)
 
 onready var scene_node: Node
 
-var scene_paths = ["res://src/level/JunkYard.tscn", 
+var scene_paths = ["res://src/level/StartScreen.tscn",
+				   "res://src/level/JunkYard.tscn", 
 				   "res://src/level/Forest.tscn", 
 				   "res://src/level/City.tscn"]
 

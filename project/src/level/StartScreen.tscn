@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/level/StartScreen.gd" type="Script" id=2]
+
+[node name="StartScreen" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="StartMenu" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="StartMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -31.5
+margin_top = -34.0
+margin_right = 31.5
+margin_bottom = 34.0
+
+[node name="StartButton" type="Button" parent="StartMenu/VBoxContainer"]
+margin_right = 63.0
+margin_bottom = 20.0
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="StartMenu/VBoxContainer"]
+margin_top = 24.0
+margin_right = 63.0
+margin_bottom = 44.0
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="StartMenu/VBoxContainer"]
+margin_top = 48.0
+margin_right = 63.0
+margin_bottom = 68.0
+text = "Quit"
+
+[connection signal="button_up" from="StartMenu/VBoxContainer/StartButton" to="." method="_on_StartButton_button_up"]
+[connection signal="button_up" from="StartMenu/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_button_up"]
+[connection signal="button_up" from="StartMenu/VBoxContainer/QuitButton" to="." method="_on_QuitButton_button_up"]
