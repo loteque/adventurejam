@@ -20,7 +20,7 @@ func _ready():
 	level_manager.scene_node = $"."
 	
 func init_vars():
-	main.is_raining = is_raining
+	pass
 
 func update_environment():
 	if is_raining:
