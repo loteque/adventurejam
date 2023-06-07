@@ -12,4 +12,3 @@ stream = ExtResource( 2 )
 
 [node name="CityTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
-autoplay = true

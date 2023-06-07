@@ -13,14 +13,14 @@ onready var level_manager: Node = main.get_node("LevelManager")
 
 onready var rain_particles: Node = get_node(rain_particles_node_path)
 
+func init_vars():
+	level_manager.scene_node = $"."
+
 func _ready():
 	init_vars()
 	update_environment()
 	update_theme_song(theme_song)
-	level_manager.scene_node = $"."
 	
-func init_vars():
-	pass
 
 func update_environment():
 	if is_raining:

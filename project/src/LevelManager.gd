@@ -36,6 +36,9 @@ func load_scene_by_index(scene_paths_index):
 func unload_scene(node: Node):
 	if !node:
 		return
+	if main.music_manager.current_track:
+		main.music_manager.stop()
+	main.emit_signal("stopped_raining")
 	node.queue_free()
 
 func handle_player():

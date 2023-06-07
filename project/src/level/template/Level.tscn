@@ -134,3 +134,5 @@ position = Vector2( 645, 252 )
 
 [node name="AntiRustPickup2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 814, 251 )
+
+[connection signal="tree_exiting" from="." to="." method="_on_Level_tree_exiting"]

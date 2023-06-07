@@ -39,7 +39,8 @@ func init_vars():
 
 func init_signals():
 	main.connect("started_raining", self, "_on_started_raining")
-
+	main.connect("stopped_raining", self, "_on_stopped_raining")
+	
 func _ready():
 	init_vars()
 	init_signals()
@@ -133,15 +134,26 @@ func get_pickup_node() -> Node:
 			pickup_node = area.get_parent()
 	return pickup_node
 
+func reset_rust_timer():
+	rust_timer.wait_time = 1.0
+	rust_timer.stop()
+	
 # Signal Callbacks
 func _on_started_raining():
 	rust_timer.start()
 	is_raining = true
+	print("Oh no... It is raining, I'll rust!")
+
+func _on_stopped_raining():
+	reset_rust_timer()
+	rust_timer.stop()
+	is_raining = false
+	print("the rain stopped...")
 
 func _on_Timer_timeout():
 	if is_on_floor():
 		last_position = position
-		 
+ 
 func _on_JumpTimer_timeout():
 	can_jump = false
 
