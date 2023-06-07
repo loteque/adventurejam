@@ -57,22 +57,11 @@ func _physics_process(delta):
 		print("in_pickup_area(): " + str(in_pickup_area()))
 		print("get_pickup_node(): " + str(get_pickup_node()))
 		print("--------------------")
-		var rust_meter_bar = player_ui.get_node("RustMeterContainer/RustMeter/RustMeterBar")
-		var antirust_counter = player_ui.get_node("OilMeter/Counter")
 		
-		if in_pickup_area() && antirust_inventory[0] < INVENTORY_MAX:
-			antirust_inventory[0] = antirust_inventory[0] + 1
-			antirust_inventory[1] = get_pickup_node().strength
-			antirust_counter.text = str(antirust_inventory[0])
-			get_pickup_node().queue_free()
-			print("picked up antirust: " + str(antirust_inventory))
-		elif !in_pickup_area() && antirust_inventory[0] > 0:
-			antirust_inventory[0] -= 1
-			rust_level -= antirust_inventory[1]
-			rust_meter_bar.rect_size.x = float(rust_level)
-			antirust_counter.text = str(antirust_inventory[0])
-			init_vars()
-			print("used antirust")
+		if can_pick_up_item():
+			pick_up_item()
+		elif can_use_item():
+			use_item()
 	
 	if Input.is_action_just_released("jump") && velocity.y < 0:
 		velocity.y = 0
@@ -89,15 +78,53 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 
+func pick_up_item(area: Area2D = null):
+	var antirust_counter = player_ui.get_node("OilMeter/Counter")
+	var item_strength: int
+	var pickup_node: Node
+	
+	if area:
+		item_strength = area.get_parent().strength
+		pickup_node = area.get_parent()
+	else:
+		item_strength = get_pickup_node().strength
+		pickup_node = get_pickup_node()
+	
+	antirust_inventory[0] = antirust_inventory[0] + 1
+	antirust_inventory[1] = item_strength
+	antirust_counter.text = str(antirust_inventory[0])
+	pickup_node.queue_free()
+	print("picked up antirust: " + str(antirust_inventory))
+
+func use_item():
+	var rust_meter_bar = player_ui.get_node("RustMeterContainer/RustMeter/RustMeterBar")
+	var antirust_counter = player_ui.get_node("OilMeter/Counter")
+	antirust_inventory[0] -= 1
+	rust_level -= antirust_inventory[1]
+	rust_meter_bar.rect_size.x = float(rust_level)
+	antirust_counter.text = str(antirust_inventory[0])
+	init_vars()
+	print("used antirust")
+
 # PlayerController Helper Functions
-func in_pickup_area():
+func can_use_item() -> bool:
+	if !in_pickup_area() && antirust_inventory[0] > 0:
+		return true
+	return false
+
+func can_pick_up_item() -> bool:
+	if in_pickup_area() && antirust_inventory[0] < INVENTORY_MAX:
+		return true
+	return false
+
+func in_pickup_area() -> bool:
 	var areas = player_area.get_overlapping_areas()
 	for area in areas:
 		if area.get_parent().is_in_group("Pickup"): 
 			return true
 	return false
 
-func get_pickup_node():
+func get_pickup_node() -> Node:
 	var pickup_node = null
 	var areas = player_area.get_overlapping_areas()
 	for area in areas:
@@ -124,6 +151,13 @@ func _on_Area2D_area_entered(area):
 		rust_timer.start()
 	if area.is_in_group("DryArea"):
 		rust_timer.stop()
+		print("entered dry area")
+	if area.get_parent().is_in_group("Pickup") && antirust_inventory[0] < INVENTORY_MAX:
+		if area.get_parent().collide_to_pick_up:
+			pick_up_item(area)
+		print("entered pickup item area")
+	
+	print("_on_area2D_area_entered: " + str(area.get_parent()))
 
 func _on_Area2D_area_exited(area):
 	if area.is_in_group("Water"):

@@ -8,6 +8,7 @@ extents = Vector2( 10, 6 )
 
 [node name="AntiRustPickup" type="Node2D" groups=["Pickup"]]
 script = ExtResource( 2 )
+collide_to_pick_up = true
 
 [node name="Wd40Pixel" type="Sprite" parent="."]
 scale = Vector2( 0.02, 0.014 )
