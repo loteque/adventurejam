@@ -3,7 +3,6 @@
 [ext_resource path="res://src/DebugUI.gd" type="Script" id=1]
 
 [node name="DebugUI" type="CanvasLayer"]
-visible = false
 script = ExtResource( 1 )
 
 [node name="TabContainer" type="TabContainer" parent="."]
@@ -15,6 +14,7 @@ tab_align = 0
 all_tabs_in_front = true
 
 [node name="Player" type="VBoxContainer" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -116,7 +116,6 @@ margin_bottom = 24.0
 text = "30.00"
 
 [node name="World" type="VBoxContainer" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -126,18 +125,20 @@ margin_bottom = -4.0
 
 [node name="Entries" type="VBoxContainer" parent="TabContainer/World"]
 margin_right = 158.0
-margin_bottom = 40.0
+margin_bottom = 20.0
 
-[node name="Lighting" type="HBoxContainer" parent="TabContainer/World/Entries"]
+[node name="NextLevel" type="HBoxContainer" parent="TabContainer/World/Entries"]
 margin_right = 158.0
-margin_bottom = 40.0
+margin_bottom = 20.0
 
-[node name="CheckButton" type="CheckButton" parent="TabContainer/World/Entries/Lighting"]
-margin_right = 76.0
-margin_bottom = 40.0
+[node name="NextLEvelButton" type="Button" parent="TabContainer/World/Entries/NextLevel"]
+margin_right = 84.0
+margin_bottom = 20.0
+text = "NEXT LEVEL"
 
 [connection signal="gui_input" from="TabContainer/Player/Entries/Friction/FrictionLineEdit" to="." method="_on_FrictionLineEdit_gui_input"]
 [connection signal="gui_input" from="TabContainer/Player/Entries/Jump/JumpLineEdit" to="." method="_on_JumpLineEdit_gui_input"]
 [connection signal="gui_input" from="TabContainer/Player/Entries/CoyoteTime/CoyoteTimeLineEdit" to="." method="_on_CoyoteTimeLineEdit_gui_input"]
 [connection signal="gui_input" from="TabContainer/Player/Entries/JumpDistance/JumpDistanceLineEdit" to="." method="_on_JumpDistanceLineEdit_gui_input"]
 [connection signal="gui_input" from="TabContainer/Player/Entries/TimeToJumpPeak/TimeToJumpPeakLineEdit" to="." method="_on_TimeToJumpPeakLineEdit_gui_input"]
+[connection signal="button_up" from="TabContainer/World/Entries/NextLevel/NextLEvelButton" to="." method="_on_Button_button_up"]

@@ -103,7 +103,9 @@ func _on_splash(index, speed):
 		springs[index].velocity += speed
 
 func _on_WaterBodyArea_area_entered(area):
-	print("WaterBodyArea: Entered Water")
-
+	#print("WaterBodyArea: Entered Water")
+	pass
+	
 func _on_WaterBodyArea_area_exited(area):
-	print("WaterBodyArea: Exited Water")
+	#print("WaterBodyArea: Exited Water")
+	pass

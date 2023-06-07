@@ -1,5 +1,10 @@
 extends CanvasLayer
 
+export (NodePath) var main_node_path = ".."
+
+onready var main_node := get_node(main_node_path)
+
+#PLAYER TAB
 export (NodePath) var player_label_node_path = "TabContainer/Player/Label"
 export (NodePath) var player_node_path = "../PlayerController"
 
@@ -18,7 +23,12 @@ onready var coyote_time_entry_node := get_node(coyote_time_entry_node_path)
 onready var jump_distance_entry_node := get_node(jump_distance_entry_node_path)
 onready var time_to_jump_peak_entry_node := get_node(time_to_jump_peak_entry_node_path)
 
+#WORLD TAB
+export (NodePath) var next_level_button_node_path = "TabContainer/World/Entries/NextLevel/NextLEvelButton"
 
+onready var next_level_button_node := get_node(next_level_button_node_path)
+
+#CURSOR
 var current_focus = null
 
 #####
@@ -77,6 +87,7 @@ func _input(event):
 		player_node.init_vars()
 		hide()
 
+# PLAYER
 func _on_FrictionLineEdit_gui_input(event):
 	var entry_container = friction_entry_node.get_parent()
 	var entry_data = friction_entry_node.text
@@ -111,3 +122,8 @@ func _on_TimeToJumpPeakLineEdit_gui_input(event):
 	if InputMap.event_is_action(event, "ui_accept") and event.is_pressed():
 		player_node.TIME_TO_JUMP_PEAK = float(entry_data)
 		find_next_entry(entry_container).grab_focus()
+
+# WORLD
+func _on_Button_button_up():
+	var level_manager = main_node.get_node("LevelManager")
+	level_manager.next_scene()
