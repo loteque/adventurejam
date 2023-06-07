@@ -35,12 +35,14 @@ func init_vars():
 	GRAVITY = (2*JUMP)/pow(TIME_TO_JUMP_PEAK, 2)
 	JUMP_SPEED = GRAVITY * TIME_TO_JUMP_PEAK
 	SPEED = JUMP_DISTANCE / (2 * TIME_TO_JUMP_PEAK)
-	
+
+func init_signals():
+	main.connect("started_raining", self, "_on_started_raining")
+
 func _ready():
 	init_vars()
-	if main.is_raining == true:
-		rust_timer.start()
-	
+	init_signals()
+
 func _physics_process(delta):
 	
 	velocity.y += GRAVITY * delta
@@ -104,6 +106,9 @@ func get_pickup_node():
 	return pickup_node
 
 # Signal Callbacks
+func _on_started_raining():
+	rust_timer.start()
+
 func _on_Timer_timeout():
 	if is_on_floor():
 		last_position = position
@@ -123,7 +128,7 @@ func _on_Area2D_area_entered(area):
 func _on_Area2D_area_exited(area):
 	if area.is_in_group("Water"):
 		rust_timer.stop()
-	if area.is_in_group("DryArea"):
+	if area.is_in_group("DryArea") and main.is_raining:
 		rust_timer.start()
 
 func _on_RustTimer_timeout():

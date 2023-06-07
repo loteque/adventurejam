@@ -17,13 +17,15 @@ func _ready():
 	init_vars()
 	update_environment()
 	update_theme_song(theme_song)
-
+	level_manager.scene_node = $"."
+	
 func init_vars():
 	main.is_raining = is_raining
 
 func update_environment():
 	if is_raining:
 		rain_particles.show()
+		main.emit_signal("started_raining")
 	else:
 		rain_particles.hide()
 

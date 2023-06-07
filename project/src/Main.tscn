@@ -21,6 +21,7 @@ script = ExtResource( 9 )
 [node name="PlayerUI" parent="." instance=ExtResource( 8 )]
 
 [node name="DebugUI" parent="." instance=ExtResource( 4 )]
+visible = false
 
 [node name="PlayerController" parent="." instance=ExtResource( 6 )]
 player_ui_node_path = NodePath("../PlayerUI")

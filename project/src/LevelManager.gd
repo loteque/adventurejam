@@ -15,11 +15,7 @@ var scene_paths = ["res://src/level/JunkYard.tscn",
 var current_scene_paths_index: int = scene_paths.size()
 
 func next_scene():
-	if main.get_node("Level"):
-		scene_node = main.get_node("Level")
-	else:
-		scene_node = main.get_node("Level2")
-		
+	
 	if current_scene_paths_index < scene_paths.size() - 1:
 		unload_scene(scene_node)
 		load_scene_by_index(current_scene_paths_index + 1)
@@ -42,6 +38,6 @@ func unload_scene(node: Node):
 	node.queue_free()
 
 func handle_player():
-		player_controller.hide()
-		player_controller.set_global_position(Vector2(0, 0))
-		player_controller.show()
+	player_controller.hide()
+	player_controller.set_global_position(Vector2(0, 0))
+	player_controller.show()
