@@ -14,7 +14,7 @@ onready var player_area: Node = get_node(player_area_node_path)
 
 export var FRICTION := 0.1
 export var COYOTE_TIME := 0.1
-export var JUMP := 32
+export var JUMP := 38
 export var JUMP_DISTANCE := 100
 export var TIME_TO_JUMP_PEAK := 0.2
 export var INVENTORY_MAX := 10
@@ -49,7 +49,7 @@ func _physics_process(delta):
 	
 	velocity.y += GRAVITY * delta
 	
-	if is_on_floor():
+	if is_on_floor() && !Input.is_action_pressed("jump"):
 		can_jump = true
 	elif can_jump == true && jump_timer.is_stopped():
 		jump_timer.start()
