@@ -17,11 +17,11 @@ onready var water_polygon = $WaterPolygon
 onready var water_border = $WaterBorder
 onready var collider = $WaterBodyArea/CollisionShape2D
 onready var water_body_area = $WaterBodyArea
+onready var target_height = global_position.y
+onready var bottom = target_height + DEPTH
 
 var water_length = SPRING_DISTANCE * NUM_SPRINGS
 var springs = []
-var target_height = global_position.y
-var bottom = target_height + DEPTH
 
 func _ready():
 	#water_border.width = BORDER_THICKNESS
