@@ -51,6 +51,8 @@ autostart = true
 wait_time = 0.7
 script = ExtResource( 3 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
