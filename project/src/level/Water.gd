@@ -8,11 +8,13 @@ extends Node2D
 #####
 
 func _ready():
+	draw_water_polygon()
 	pass
 	
 func _physics_process(delta):
-	draw_water_polygon()
-
+#	draw_water_polygon()
+	pass
+	
 func draw_water_polygon():
 	var children = get_children()
 	for child in children:

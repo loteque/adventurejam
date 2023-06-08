@@ -1,78 +1,91 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/level/level_nodes/dry_area/DryArea.tscn" type="PackedScene" id=1]
-[ext_resource path="res://asset/City.png" type="Texture" id=2]
-[ext_resource path="res://asset/Background2_Blank.png" type="Texture" id=3]
-[ext_resource path="res://asset/Trees.png" type="Texture" id=4]
+[ext_resource path="res://asset/Art/cave layer 2.png" type="Texture" id=2]
+[ext_resource path="res://asset/Art/junkyard 1 layer 1.png" type="Texture" id=3]
+[ext_resource path="res://asset/Art/junkyard 1 layer 3.png" type="Texture" id=4]
 [ext_resource path="res://src/level/template/TileMap.tscn" type="PackedScene" id=5]
-[ext_resource path="res://asset/Background.png" type="Texture" id=6]
-[ext_resource path="res://asset/Drawing_28_3_1.png" type="Texture" id=7]
+[ext_resource path="res://asset/Art/junkyard 1 layer 2.png" type="Texture" id=6]
+[ext_resource path="res://asset/Art/cave layer 3.png" type="Texture" id=7]
 [ext_resource path="res://src/level/level_nodes/rain/RainParticles.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/level/level_nodes/anti_rust/AntiRustPickup.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/level/level_nodes/water/WaterBody.tscn" type="PackedScene" id=10]
+[ext_resource path="res://asset/Art/cave layer 1.png" type="Texture" id=10]
 [ext_resource path="res://src/level/Level.gd" type="Script" id=11]
 [ext_resource path="res://src/level/level_nodes/respawn_area/RespawnArea2D.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/ui/LevelEndMenu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/level/level_nodes/water/water_shader.tres" type="Shader" id=14]
+[ext_resource path="res://src/level/level_nodes/water/Water.tscn" type="PackedScene" id=15]
+[ext_resource path="res://asset/Art/junkyard 1 layer 4.png" type="Texture" id=16]
+[ext_resource path="res://asset/Art/junkyard 1 layer 5.png" type="Texture" id=17]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 176, 20 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 14 )
+shader_param/tint = Color( 1, 1, 1, 1 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 48, 13.5 )
 
 [sub_resource type="RectangleShape2D" id=1]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 11 )
-is_raining = false
+is_raining = true
 
-[node name="LevelEndMenu" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="CanvasLayer" type="CanvasLayer" parent="LevelEndMenu"]
-visible = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="LevelEndMenu/CanvasLayer"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
-
-[node name="Label" type="Label" parent="LevelEndMenu/CanvasLayer/VBoxContainer"]
-margin_right = 125.0
-margin_bottom = 14.0
-text = "The Forest Awaits..."
-
-[node name="Button" type="Button" parent="LevelEndMenu/CanvasLayer/VBoxContainer"]
-margin_top = 18.0
-margin_right = 125.0
-margin_bottom = 38.0
-text = "Continue"
+[node name="LevelEndMenu" parent="." instance=ExtResource( 13 )]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 480, 0 )
+motion_mirroring = Vector2( 603, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-scale = Vector2( 0.25, 0.25 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.2, 0.9 )
-motion_mirroring = Vector2( 480, 0 )
+motion_mirroring = Vector2( 603, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 2 )
+position = Vector2( 0, -382 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
 centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.75, 0.9 )
-motion_mirroring = Vector2( 480, 0 )
+motion_mirroring = Vector2( 603, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
-scale = Vector2( 0.25, 0.25 )
+position = Vector2( 3, -382 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -3, 364 )
+motion_scale = Vector2( 0.8, 0.9 )
+motion_mirroring = Vector2( 603, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
+position = Vector2( 3, -382 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 16 )
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( -3, 364 )
+motion_scale = Vector2( 0.9, 0.9 )
+motion_mirroring = Vector2( 603, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
+position = Vector2( 3, -401 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 17 )
 centered = false
 
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
@@ -84,7 +97,7 @@ motion_mirroring = Vector2( 480, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground2/ParallaxLayer"]
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 6 )
+texture = ExtResource( 10 )
 centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
@@ -93,33 +106,43 @@ motion_mirroring = Vector2( 480, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground2/ParallaxLayer2"]
 scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_scale = Vector2( 0.75, 1 )
+motion_mirroring = Vector2( 480, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground2/ParallaxLayer3"]
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 7 )
 centered = false
 
 [node name="RainParticles" parent="." instance=ExtResource( 8 )]
 visible = false
 
-[node name="WaterBody" parent="." instance=ExtResource( 10 )]
-position = Vector2( 55, 264 )
-scale = Vector2( 1, 0.15 )
-z_index = 1
-SPRING_STIFFNESS = 0.03
-NUM_PASSES = 4
-SPRING_DISTANCE = 33
-NUM_SPRINGS = 12
-DEPTH = 20
-BORDER_THICKNESS = 0.02
+[node name="Water" parent="." instance=ExtResource( 15 )]
 
-[node name="WaterBody2" parent="." instance=ExtResource( 10 )]
-position = Vector2( 825, 169 )
-scale = Vector2( 1, 0.2 )
-z_index = 1
-SPRING_STIFFNESS = 0.03
-NUM_PASSES = 4
-SPRING_DISTANCE = 22
-NUM_SPRINGS = 6
-DEPTH = 10
-BORDER_THICKNESS = 0.02
+[node name="WaterArea2D" type="Area2D" parent="Water"]
+position = Vector2( 240, 277 )
+
+[node name="WaterCollisionShape2D" type="CollisionShape2D" parent="Water/WaterArea2D"]
+shape = SubResource( 2 )
+
+[node name="WaterPolygon2D" type="Polygon2D" parent="Water/WaterArea2D"]
+material = SubResource( 3 )
+color = Color( 0.372549, 0.337255, 1, 0.411765 )
+
+[node name="WaterArea2D2" type="Area2D" parent="Water"]
+position = Vector2( 874, 183 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water/WaterArea2D2"]
+position = Vector2( 6, -3.5 )
+shape = SubResource( 4 )
+
+[node name="WaterPolygon2D" type="Polygon2D" parent="Water/WaterArea2D2"]
+material = SubResource( 3 )
+color = Color( 0.372549, 0.337255, 1, 0.411765 )
 
 [node name="TileMap" parent="." instance=ExtResource( 5 )]
 tile_data = PoolIntArray( 131097, 9, 0, 196633, 9, 0, 262169, 10, 0, 327697, 6, 0, 327698, 6, 0, 327699, 6, 0, 327700, 7, 0, 327703, 6, 0, 327704, 9, 0, 327705, 10, 0, 327709, 10, 0, 393233, 0, 0, 393234, 0, 0, 393235, 0, 0, 393236, 0, 0, 393239, 0, 0, 393240, 9, 0, 393241, 10, 0, 393242, 10, 0, 393243, 10, 0, 393244, 10, 0, 393245, 10, 0, 393246, 7, 0, 393247, 7, 0, 393248, 7, 0, 393249, 7, 0, 393250, 7, 0, 393251, 7, 0, 393252, 7, 0, 393253, 7, 0, 393254, 9, 0, 393255, 9, 0, 393256, 9, 0, 458752, 6, 0, 458753, 7, 0, 458765, 6, 0, 458766, 6, 0, 458767, 6, 0, 458768, 6, 0, 458769, 6, 0, 458770, 6, 0, 458771, 6, 0, 458772, 6, 0, 458773, 6, 0, 458774, 6, 0, 458775, 6, 0, 458776, 6, 0, 458777, 6, 0, 458778, 6, 0, 458781, 10, 0, 458782, 9, 0, 458783, 9, 0, 458784, 9, 0, 458785, 9, 0, 458786, 9, 0, 458787, 9, 0, 458788, 9, 0, 458789, 9, 0, 458790, 9, 0, 458791, 9, 0, 458795, 5, 0, 458796, 5, 0, 458797, 5, 0, 458798, 5, 0, 458799, 5, 0, 458800, 5, 0, 458801, 5, 0, 458805, 5, 0, 458806, 5, 0, 458807, 5, 0, 458808, 5, 0, 458809, 5, 0, 458810, 5, 0, 458811, 5, 0, 458814, 6, 0, 458815, 5, 0, 458816, 5, 0, 458817, 5, 0, 458818, 5, 0, 458819, 5, 0, 458820, 5, 0, 458821, 5, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 6, 0, 524291, 6, 0, 524292, 6, 0, 524293, 6, 0, 524294, 6, 0, 524295, 6, 0, 524296, 6, 0, 524297, 6, 0, 524298, 6, 0, 524299, 6, 0, 524300, 6, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524310, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524322, 0, 0, 524323, 0, 0, 524324, 0, 0, 524325, 0, 0, 524327, 0, 0, 524328, 0, 0, 524329, 0, 0, 524330, 10, 0, 524331, 0, 0, 524332, 0, 0, 524333, 0, 0, 524340, 9, 0, 589824, 9, 0, 589825, 9, 0, 589830, 0, 0, 589837, 9, 0, 589838, 9, 0, 589839, 9, 0, 589849, 10, 0, 589850, 10, 0, 589851, 10, 0, 589858, 0, 0, 589865, 10, 0, 589866, 10, 0, 589886, 10, 0, 655361, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655385, 10, 0, 655386, 10, 0, 655387, 10, 0, 655388, 10, 0, 655390, 0, 0, 655391, 0, 0, 655392, 0, 0, 655393, 0, 0, 655394, 0, 0, 655401, 10, 0, 655421, 10, 0, 655422, 9, 0, 720924, 10, 0, 720925, 10, 0, 720936, 10, 0, 720937, 10, 0, 720956, 10, 0, 720957, 9, 0, 786461, 10, 0, 786472, 10, 0, 786473, 9, 0, 786474, 9, 0, 786475, 9, 0, 786476, 9, 0, 786477, 9, 0, 786478, 9, 0, 786479, 9, 0, 786480, 9, 0, 786485, 9, 0, 786486, 9, 0, 786487, 9, 0, 786488, 9, 0, 786489, 9, 0, 786490, 9, 0, 786491, 9, 0, 786492, 9, 0, 851997, 10, 0, 851998, 10, 0, 851999, 10, 0, 852002, 10, 0, 852003, 10, 0, 852006, 10, 0, 852007, 10, 0, 852008, 10, 0 )
@@ -150,5 +173,7 @@ scale = Vector2( 3, 10 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="level_end"]
 shape = SubResource( 1 )
 
-[connection signal="button_up" from="LevelEndMenu/CanvasLayer/VBoxContainer/Button" to="." method="_on_Button_button_up"]
+[connection signal="script_changed" from="." to="." method="_on_Level_script_changed"]
 [connection signal="body_entered" from="level_end" to="." method="_on_level_end_body_entered"]
+
+[editable path="Water"]

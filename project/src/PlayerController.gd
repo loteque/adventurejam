@@ -12,6 +12,8 @@ onready var rust_timer: Node = get_node(rust_timer_node_path)
 onready var player_ui: Node = get_node(player_ui_node_path)
 onready var player_area: Node = get_node(player_area_node_path)
 
+onready var rust_meter_bar = player_ui.get_node("RustMeterContainer/RustMeter/RustMeterBar")
+
 export var FRICTION := 0.1
 export var COYOTE_TIME := 0.1
 export var JUMP := 38
@@ -99,7 +101,7 @@ func pick_up_item(area: Area2D = null):
 	print("picked up antirust: " + str(antirust_inventory))
 
 func use_item():
-	var rust_meter_bar = player_ui.get_node("RustMeterContainer/RustMeter/RustMeterBar")
+	rust_meter_bar = player_ui.get_node("RustMeterContainer/RustMeter/RustMeterBar")
 	var antirust_counter = player_ui.get_node("OilMeter/Counter")
 	antirust_inventory[0] -= 1
 	rust_level -= antirust_inventory[1]
@@ -162,6 +164,9 @@ func _on_Area2D_area_entered(area):
 	if area.is_in_group("Respawn"):
 		last_position.y -= 85
 		position = last_position
+		rust_level = clamp(rust_level + 10, 0, 100)
+		rust_meter_bar.rect_size.x = float(rust_level)
+		init_vars()
 	if area.get_parent().is_in_group("Water"):
 		if is_raining:
 			rust_timer.wait_time = rust_timer.wait_time - (rust_timer.wait_time / 4)
@@ -178,7 +183,7 @@ func _on_Area2D_area_entered(area):
 	print("_on_area2D_area_entered: " + str(area.get_parent()))
 
 func _on_Area2D_area_exited(area):
-	if area.is_in_group("Water"):
+	if area.get_parent().is_in_group("Water"):
 		if is_raining:
 			reset_rust_timer(false)
 		else:
@@ -188,14 +193,12 @@ func _on_Area2D_area_exited(area):
 	print(str(rust_timer.wait_time))
 
 func _on_RustTimer_timeout():
-	var rust_meter_bar = player_ui.get_node("RustMeterContainer/RustMeter/RustMeterBar")
 	rust_level = clamp(rust_level + 1, 0, 100)
 	rust_meter_bar.rect_size.x = float(rust_level)
 	JUMP_DISTANCE = 100 - rust_level
 	if rust_level == 90:
 		JUMP = 5
 	if rust_level == 100:
-		yield(get_tree().create_timer(5), "timeout")
 		player_ui.get_node("Rusted").show()
 	init_vars()
 #	print("RUST METER: " + str(rust_level))
