@@ -3,7 +3,7 @@ extends Node2D
 var velocity = 0
 var force = 0
 var height = 0
-var target_height = position.y + 80
+var target_height = position.y + 5
 var index = 0
 var motion_factor = 0.02
 var collided_with = null

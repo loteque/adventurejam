@@ -1,10 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/level/level_nodes/dry_area/DryArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://asset/City.png" type="Texture" id=2]
 [ext_resource path="res://asset/Background2_Blank.png" type="Texture" id=3]
 [ext_resource path="res://asset/Trees.png" type="Texture" id=4]
-[ext_resource path="res://asset/jungle tileset.png" type="Texture" id=5]
+[ext_resource path="res://src/level/template/TileMap.tscn" type="PackedScene" id=5]
 [ext_resource path="res://asset/Background.png" type="Texture" id=6]
 [ext_resource path="res://asset/Drawing_28_3_1.png" type="Texture" id=7]
 [ext_resource path="res://src/level/level_nodes/rain/RainParticles.tscn" type="PackedScene" id=8]
@@ -13,34 +13,9 @@
 [ext_resource path="res://src/level/Level.gd" type="Script" id=11]
 [ext_resource path="res://src/level/level_nodes/respawn_area/RespawnArea2D.tscn" type="PackedScene" id=12]
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
-
-[sub_resource type="TileSet" id=3]
-0/name = "jungle tileset.png 0"
-0/texture = ExtResource( 5 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 96, 32, 32, 32 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 2 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 2 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-0/z_index = 0
-
 [node name="Level" type="Node2D"]
 script = ExtResource( 11 )
+is_raining = false
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -92,6 +67,7 @@ texture = ExtResource( 7 )
 centered = false
 
 [node name="RainParticles" parent="." instance=ExtResource( 8 )]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = 544.0
@@ -112,12 +88,8 @@ position = Vector2( 63, 271 )
 z_index = 1
 SPRING_DISTANCE = 19
 
-[node name="TileMap" type="TileMap" parent="."]
-z_index = 2
-tile_set = SubResource( 3 )
-cell_size = Vector2( 32, 32 )
-format = 1
-tile_data = PoolIntArray( 393233, 0, 0, 393234, 0, 0, 393235, 0, 0, 393236, 0, 0, 393239, 0, 0, 393240, 0, 0, 393241, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524310, 0, 0, 524311, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524315, 0, 0, 524322, 0, 0, 524323, 0, 0, 524324, 0, 0, 524325, 0, 0, 524326, 0, 0, 524327, 0, 0, 524328, 0, 0, 524329, 0, 0, 524330, 0, 0, 524331, 0, 0, 524332, 0, 0, 524333, 0, 0, 589825, 0, 0, 589830, 0, 0, 589851, 0, 0, 589858, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655387, 0, 0, 655388, 0, 0, 655389, 0, 0, 655390, 0, 0, 655391, 0, 0, 655392, 0, 0, 655393, 0, 0, 655394, 0, 0 )
+[node name="TileMap" parent="." instance=ExtResource( 5 )]
+tile_data = PoolIntArray( 327697, 5, 0, 327698, 5, 0, 327699, 5, 0, 327700, 5, 0, 393233, 0, 0, 393234, 0, 0, 393235, 0, 0, 393236, 0, 0, 393239, 0, 0, 393240, 0, 0, 393241, 0, 0, 524287, 5, 0, 458752, 5, 0, 458753, 7, 0, 458764, 6, 0, 458765, 5, 0, 458766, 5, 0, 458767, 5, 0, 458768, 5, 0, 458769, 5, 0, 458770, 5, 0, 458771, 5, 0, 458772, 5, 0, 458773, 5, 0, 458774, 5, 0, 458775, 5, 0, 458776, 5, 0, 458777, 5, 0, 458778, 5, 0, 458779, 5, 0, 589823, 0, 0, 524289, 0, 0, 524290, 5, 0, 524291, 5, 0, 524292, 5, 0, 524293, 5, 0, 524294, 5, 0, 524295, 5, 0, 524296, 5, 0, 524297, 5, 0, 524298, 5, 0, 524299, 5, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524310, 0, 0, 524311, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524315, 0, 0, 524322, 0, 0, 524323, 0, 0, 524324, 0, 0, 524325, 0, 0, 524326, 0, 0, 524327, 0, 0, 524328, 0, 0, 524329, 0, 0, 524330, 0, 0, 524331, 0, 0, 524332, 0, 0, 524333, 0, 0, 655359, 8, 0, 589824, 8, 0, 589825, 8, 0, 589830, 0, 0, 589836, 8, 0, 589837, 8, 0, 589838, 8, 0, 589851, 0, 0, 589858, 0, 0, 655361, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655387, 0, 0, 655388, 0, 0, 655389, 0, 0, 655390, 0, 0, 655391, 0, 0, 655392, 0, 0, 655393, 0, 0, 655394, 0, 0 )
 
 [node name="RespawnArea2D" parent="." instance=ExtResource( 12 )]
 

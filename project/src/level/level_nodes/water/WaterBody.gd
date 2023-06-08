@@ -24,7 +24,7 @@ var water_length = SPRING_DISTANCE * NUM_SPRINGS
 var springs = []
 
 func _ready():
-	#water_border.width = BORDER_THICKNESS
+	water_border.width = BORDER_THICKNESS
 	
 	for n in range(NUM_SPRINGS):
 		var x_position = SPRING_DISTANCE * n

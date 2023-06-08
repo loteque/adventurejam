@@ -17,7 +17,7 @@ export var COYOTE_TIME := 0.1
 export var JUMP := 38
 export var JUMP_DISTANCE := 100
 export var TIME_TO_JUMP_PEAK := 0.2
-export var INVENTORY_MAX := 10
+export var INVENTORY_MAX := 3
 
 var GRAVITY : float
 var JUMP_SPEED : float

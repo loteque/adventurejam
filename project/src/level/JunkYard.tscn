@@ -1,10 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/level/level_nodes/dry_area/DryArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://asset/City.png" type="Texture" id=2]
 [ext_resource path="res://asset/Background2_Blank.png" type="Texture" id=3]
 [ext_resource path="res://asset/Trees.png" type="Texture" id=4]
-[ext_resource path="res://asset/jungle tileset.png" type="Texture" id=5]
+[ext_resource path="res://src/level/template/TileMap.tscn" type="PackedScene" id=5]
 [ext_resource path="res://asset/Background.png" type="Texture" id=6]
 [ext_resource path="res://asset/Drawing_28_3_1.png" type="Texture" id=7]
 [ext_resource path="res://src/level/level_nodes/rain/RainParticles.tscn" type="PackedScene" id=8]
@@ -12,32 +12,6 @@
 [ext_resource path="res://src/level/level_nodes/water/WaterBody.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/level/Level.gd" type="Script" id=11]
 [ext_resource path="res://src/level/level_nodes/respawn_area/RespawnArea2D.tscn" type="PackedScene" id=12]
-
-[sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
-
-[sub_resource type="TileSet" id=3]
-0/name = "jungle tileset.png 0"
-0/texture = ExtResource( 5 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 96, 32, 32, 32 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 2 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 2 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-0/z_index = 0
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 11 )
@@ -95,16 +69,29 @@ centered = false
 visible = false
 
 [node name="WaterBody" parent="." instance=ExtResource( 10 )]
-position = Vector2( 63, 271 )
+position = Vector2( 55, 264 )
+scale = Vector2( 1, 0.15 )
 z_index = 1
-SPRING_DISTANCE = 19
+SPRING_STIFFNESS = 0.03
+NUM_PASSES = 4
+SPRING_DISTANCE = 33
+NUM_SPRINGS = 12
+DEPTH = 20
+BORDER_THICKNESS = 0.02
 
-[node name="TileMap" type="TileMap" parent="."]
-z_index = 2
-tile_set = SubResource( 3 )
-cell_size = Vector2( 32, 32 )
-format = 1
-tile_data = PoolIntArray( 393233, 0, 0, 393234, 0, 0, 393235, 0, 0, 393236, 0, 0, 393239, 0, 0, 393240, 0, 0, 393241, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524310, 0, 0, 524311, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524315, 0, 0, 524322, 0, 0, 524323, 0, 0, 524324, 0, 0, 524325, 0, 0, 524326, 0, 0, 524327, 0, 0, 524328, 0, 0, 524329, 0, 0, 524330, 0, 0, 524331, 0, 0, 524332, 0, 0, 524333, 0, 0, 589825, 0, 0, 589830, 0, 0, 589851, 0, 0, 589858, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655387, 0, 0, 655388, 0, 0, 655389, 0, 0, 655390, 0, 0, 655391, 0, 0, 655392, 0, 0, 655393, 0, 0, 655394, 0, 0 )
+[node name="WaterBody2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 825, 169 )
+scale = Vector2( 1, 0.2 )
+z_index = 1
+SPRING_STIFFNESS = 0.03
+NUM_PASSES = 4
+SPRING_DISTANCE = 22
+NUM_SPRINGS = 6
+DEPTH = 10
+BORDER_THICKNESS = 0.02
+
+[node name="TileMap" parent="." instance=ExtResource( 5 )]
+tile_data = PoolIntArray( 131097, 9, 0, 196633, 9, 0, 262169, 10, 0, 327697, 6, 0, 327698, 6, 0, 327699, 6, 0, 327700, 7, 0, 327703, 6, 0, 327704, 9, 0, 327705, 10, 0, 327709, 10, 0, 393233, 0, 0, 393234, 0, 0, 393235, 0, 0, 393236, 0, 0, 393239, 0, 0, 393240, 9, 0, 393241, 10, 0, 393242, 10, 0, 393243, 10, 0, 393244, 10, 0, 393245, 10, 0, 393246, 7, 0, 393247, 7, 0, 393248, 7, 0, 393249, 7, 0, 393250, 7, 0, 393251, 7, 0, 393252, 7, 0, 393253, 7, 0, 393254, 9, 0, 393255, 9, 0, 393256, 9, 0, 458752, 6, 0, 458753, 7, 0, 458765, 6, 0, 458766, 6, 0, 458767, 6, 0, 458768, 6, 0, 458769, 6, 0, 458770, 6, 0, 458771, 6, 0, 458772, 6, 0, 458773, 6, 0, 458774, 6, 0, 458775, 6, 0, 458776, 6, 0, 458777, 6, 0, 458778, 6, 0, 458781, 10, 0, 458782, 9, 0, 458783, 9, 0, 458784, 9, 0, 458785, 9, 0, 458786, 9, 0, 458787, 9, 0, 458788, 9, 0, 458789, 9, 0, 458790, 9, 0, 458791, 9, 0, 458795, 7, 0, 458796, 7, 0, 458797, 7, 0, 458798, 7, 0, 458799, 7, 0, 458800, 7, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 6, 0, 524291, 6, 0, 524292, 6, 0, 524293, 6, 0, 524294, 6, 0, 524295, 6, 0, 524296, 6, 0, 524297, 6, 0, 524298, 6, 0, 524299, 6, 0, 524300, 6, 0, 524302, 0, 0, 524303, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524310, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524322, 0, 0, 524323, 0, 0, 524324, 0, 0, 524325, 0, 0, 524327, 0, 0, 524328, 0, 0, 524329, 0, 0, 524330, 10, 0, 524331, 0, 0, 524332, 0, 0, 524333, 0, 0, 589824, 9, 0, 589825, 9, 0, 589830, 0, 0, 589837, 9, 0, 589838, 9, 0, 589839, 9, 0, 589849, 10, 0, 589850, 10, 0, 589851, 10, 0, 589858, 0, 0, 589865, 10, 0, 589866, 10, 0, 655361, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655385, 10, 0, 655386, 10, 0, 655387, 10, 0, 655388, 10, 0, 655390, 0, 0, 655391, 0, 0, 655392, 0, 0, 655393, 0, 0, 655394, 0, 0, 655401, 10, 0, 720924, 10, 0, 720925, 10, 0, 720936, 10, 0, 720937, 10, 0, 786461, 10, 0, 786472, 10, 0, 851997, 10, 0, 851998, 10, 0, 851999, 10, 0, 852002, 10, 0, 852003, 10, 0, 852006, 10, 0, 852007, 10, 0, 852008, 10, 0 )
 
 [node name="RespawnArea2D" parent="." instance=ExtResource( 12 )]
 
@@ -113,11 +100,11 @@ position = Vector2( 608, 241 )
 scale = Vector2( 6.3, 3 )
 
 [node name="DryArea2" parent="." groups=["DryArea"] instance=ExtResource( 1 )]
-position = Vector2( 784, 242 )
-scale = Vector2( 4.7, 3 )
+position = Vector2( 1023, 322 )
+scale = Vector2( 28.5, 10 )
 
 [node name="AntiRustPickup" parent="." instance=ExtResource( 9 )]
-position = Vector2( 645, 252 )
+position = Vector2( 608, 182 )
 
 [node name="AntiRustPickup2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 814, 251 )
+position = Vector2( 844, 188 )
