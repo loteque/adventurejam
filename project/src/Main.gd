@@ -27,17 +27,21 @@ signal stopped_raining
 func init_vars():
 	level_node = level_manager.scene_node
 
+func _input(event):
+	if event.is_action_pressed("toggle_pause"):
+		toggle_pause()
+	if event.is_action_pressed("ui_cancel"):
+		toggle_pause()
+
 func _ready():
 	init_vars()
 	level_manager.next_scene()
 
-func _process(delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		if is_paused:
-			antipause()
-		else: 
-			pause()
-
+func toggle_pause():
+	if is_paused:
+		antipause()
+	else:
+		pause()
 
 func pause():
 	get_tree().paused = true

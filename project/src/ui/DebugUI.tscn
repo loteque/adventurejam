@@ -14,7 +14,6 @@ tab_align = 0
 all_tabs_in_front = true
 
 [node name="Player" type="VBoxContainer" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -116,6 +115,7 @@ margin_bottom = 24.0
 text = "30.00"
 
 [node name="World" type="VBoxContainer" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0

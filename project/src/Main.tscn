@@ -11,18 +11,24 @@
 [ext_resource path="res://src/ui/SettingsScreen.tscn" type="PackedScene" id=10]
 
 [node name="Main" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 7 )
 
 [node name="LevelManager" parent="." instance=ExtResource( 1 )]
+pause_mode = 2
 
 [node name="MusicManager" parent="." instance=ExtResource( 3 )]
+pause_mode = 2
 
 [node name="TouchUI" parent="." instance=ExtResource( 5 )]
+pause_mode = 2
 visible = false
 
 [node name="PlayerUI" parent="." instance=ExtResource( 8 )]
+pause_mode = 2
 
 [node name="DebugUI" parent="." instance=ExtResource( 4 )]
+pause_mode = 2
 visible = false
 
 [node name="PauseScreen" parent="." instance=ExtResource( 2 )]
@@ -32,5 +38,6 @@ visible = false
 visible = false
 
 [node name="PlayerController" parent="." instance=ExtResource( 6 )]
+pause_mode = 1
 visible = false
 player_ui_node_path = NodePath("../PlayerUI")

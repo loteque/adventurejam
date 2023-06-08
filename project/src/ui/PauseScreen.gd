@@ -4,7 +4,9 @@ export (NodePath) var main_node = ".."
 
 onready var main: Node = get_node(main_node)
 
-
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		hide()
 
 func _on_Resume_button_up():
 	main.antipause()
@@ -20,3 +22,7 @@ func _on_Quit_button_up():
 	main.level_manager.handle_player_ui()
 	hide()
 	main.antipause()
+
+func _on_PauseScreen_visibility_changed():
+	if visible:
+		$VBoxContainer/Resume.grab_focus()
