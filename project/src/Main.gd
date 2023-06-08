@@ -38,9 +38,9 @@ func _ready():
 	level_manager.next_scene()
 
 func toggle_pause():
-	if is_paused:
+	if is_paused && level_manager.scene_node.name != "StartSceen":
 		antipause()
-	else:
+	elif !is_paused && level_manager.scene_node.name != "StartScreen":
 		pause()
 
 func pause():
