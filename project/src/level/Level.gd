@@ -31,3 +31,12 @@ func update_environment():
 
 func update_theme_song(song_index):
 	music_manager.update_theme_song(song_index)
+
+
+func _on_level_end_body_entered(body):
+	if body.is_in_group("Player"):
+		print("you beat the level")
+		$LevelEndMenu/CanvasLayer.show()
+
+func _on_Button_button_up():
+	main.level_manager.next_scene()

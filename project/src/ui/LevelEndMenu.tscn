@@ -1,0 +1,29 @@
+[gd_scene format=2]
+
+[node name="LevelEndMenu" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+margin_right = 125.0
+margin_bottom = 14.0
+text = "The Forest Awaits..."
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 125.0
+margin_bottom = 38.0
+text = "Continue"
