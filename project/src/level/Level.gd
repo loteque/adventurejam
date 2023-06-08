@@ -37,6 +37,6 @@ func _on_level_end_body_entered(body):
 		print("you beat the level")
 		$LevelEndMenu/CanvasLayer.show()
 
-func _on_Level_script_changed():
-	update_environment()
-	update_theme_song(theme_song)
+func _on_next_level_trigger_body_entered(body):
+	if body.is_in_group("Player"):
+		main.level_manager.next_scene()

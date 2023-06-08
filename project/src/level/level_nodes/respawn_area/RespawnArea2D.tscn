@@ -1,11 +1,10 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 1450, 36.5 )
+extents = Vector2( 3500, 36.5 )
 
 [node name="RespawnArea2D" type="Area2D" groups=["Respawn"]]
 position = Vector2( 858, 423 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 17, 126 )
 shape = SubResource( 5 )
