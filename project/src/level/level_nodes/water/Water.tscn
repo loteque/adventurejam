@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/level/Water.gd" type="Script" id=2]
+
+[node name="Water" type="Node2D" groups=["Water"]]
+position = Vector2( 0, -1 )
+z_index = 1
+script = ExtResource( 2 )

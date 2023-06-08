@@ -162,7 +162,7 @@ func _on_Area2D_area_entered(area):
 	if area.is_in_group("Respawn"):
 		last_position.y -= 85
 		position = last_position
-	if area.is_in_group("Water"):
+	if area.get_parent().is_in_group("Water"):
 		if is_raining:
 			rust_timer.wait_time = rust_timer.wait_time - (rust_timer.wait_time / 4)
 		else:
