@@ -13,6 +13,7 @@ func _input(event):
 		main.quit()
 		
 func _ready():
+	main.music_manager.update_theme_song(0)
 	init_vars()
 	main.player_controller.reset_rust_level()
 	main.player_controller.reset_rust_timer()

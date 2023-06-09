@@ -1,14 +1,61 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://asset/Platforming_Level_Sketch2.wav" type="AudioStream" id=1]
-[ext_resource path="res://asset/Junkyard_Sketch2.ogg" type="AudioStream" id=2]
+[ext_resource path="res://asset/Music/Main Theme.ogg" type="AudioStream" id=1]
+[ext_resource path="res://asset/Ambience/Ambience_RainThicc.ogg" type="AudioStream" id=2]
 [ext_resource path="res://src/MusicManager.gd" type="Script" id=3]
+[ext_resource path="res://asset/Music/Hopeful Forest.ogg" type="AudioStream" id=4]
+[ext_resource path="res://asset/Music/Ending Scene (My Best Friend_s Back).ogg" type="AudioStream" id=5]
+[ext_resource path="res://asset/Music/Rustic City.ogg" type="AudioStream" id=6]
+[ext_resource path="res://asset/Music/Junk Commune.ogg" type="AudioStream" id=7]
+[ext_resource path="res://asset/SFX/SFX_Jump.ogg" type="AudioStream" id=8]
+[ext_resource path="res://asset/SFX/SFX_WaterSplash.ogg" type="AudioStream" id=9]
+[ext_resource path="res://asset/Ambience/Ambience_RainMid.ogg" type="AudioStream" id=10]
 
 [node name="MusicManager" type="Node"]
 script = ExtResource( 3 )
 
-[node name="JunkyardTheme" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
+[node name="Music" type="Node" parent="."]
 
-[node name="CityTheme" type="AudioStreamPlayer" parent="."]
+[node name="MainTheme" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource( 1 )
+
+[node name="ForestTheme" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 4 )
+volume_db = -11.0
+
+[node name="JunkyardTheme" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 7 )
+volume_db = -10.0
+
+[node name="CityTheme" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 6 )
+volume_db = -10.0
+
+[node name="RustTheme" type="AudioStreamPlayer" parent="Music"]
+
+[node name="Reprise" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 5 )
+
+[node name="Empty" type="AudioStreamPlayer" parent="Music"]
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Jump" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 8 )
+volume_db = -8.0
+
+[node name="Splash" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource( 9 )
+
+[node name="Empty" type="AudioStreamPlayer" parent="SFX"]
+
+[node name="Background" type="Node" parent="."]
+
+[node name="RainMid" type="AudioStreamPlayer" parent="Background"]
+stream = ExtResource( 10 )
+
+[node name="RainHigh" type="AudioStreamPlayer" parent="Background"]
+stream = ExtResource( 2 )
+volume_db = -12.593
+
+[node name="Empty" type="AudioStreamPlayer" parent="Background"]

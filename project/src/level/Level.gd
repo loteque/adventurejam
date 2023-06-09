@@ -7,7 +7,8 @@ export (bool) var is_raining = false
 onready var main: Node = get_node(main_node_path)
 
 onready var music_manager: Node = main.get_node("MusicManager")
-export var theme_song := 0
+export var theme_song := 1
+export var background_audio := 0
 
 onready var level_manager: Node = main.get_node("LevelManager")
 
@@ -35,6 +36,9 @@ func update_environment():
 
 func update_theme_song(song_index):
 	music_manager.update_theme_song(song_index)
+
+func update_bg_audio(index):
+	music_manager.play_bg(index)
 
 func _on_collided(collision):
 	if collision.collider is TileMap:
