@@ -100,12 +100,6 @@ position = Vector2( 4263, 345 )
 [node name="AntiRustPickup7" parent="." instance=ExtResource( 9 )]
 position = Vector2( 4680, 409 )
 
-[node name="AntiRustPickup8" parent="." instance=ExtResource( 9 )]
-position = Vector2( 5233, 438 )
-
-[node name="AntiRustPickup9" parent="." instance=ExtResource( 9 )]
-position = Vector2( 6152, 505 )
-
 [node name="FinalGoalArea2D" type="Area2D" parent="."]
 position = Vector2( 6151, 423 )
 
