@@ -83,6 +83,11 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
+	if velocity.x < 0:
+		$Sprite.flip_h = true
+	else:
+		$Sprite.flip_h = false
+	
 	emit_collided_siganl()
 
 func pick_up_item(area: Area2D = null):
