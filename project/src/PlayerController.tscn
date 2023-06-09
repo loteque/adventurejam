@@ -24,7 +24,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2( 40, -60 )
+offset = Vector2( 40, -50 )
 current = true
 smoothing_enabled = true
 smoothing_speed = 20.0

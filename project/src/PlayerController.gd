@@ -73,6 +73,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("jump") && can_jump:
 		velocity.y = -JUMP_SPEED
+		main.music_manager.play_sfx(0)
 	
 	if Input.is_action_pressed("ui_right"):
 		velocity.x = lerp(velocity.x, SPEED, FRICTION)
@@ -198,6 +199,7 @@ func _on_Area2D_area_entered(area):
 		update_jump_distance(rust_level)
 		init_vars()
 	if area.get_parent().is_in_group("Water"):
+		main.music_manager.play_sfx(1)
 		if is_raining:
 			rust_timer.wait_time = rust_timer.wait_time - (rust_timer.wait_time / 4)
 		else:
