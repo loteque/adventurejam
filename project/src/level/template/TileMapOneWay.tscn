@@ -6,4 +6,5 @@
 z_index = -1
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
+collision_use_parent = true
 format = 1

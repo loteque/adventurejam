@@ -119,6 +119,7 @@ texture = ExtResource( 7 )
 centered = false
 
 [node name="RainParticles" parent="." instance=ExtResource( 8 )]
+visible = false
 position = Vector2( 3920, -80 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -126,7 +127,6 @@ position = Vector2( 208, 232 )
 
 [node name="TileMapOneWay" parent="StaticBody2D" instance=ExtResource( 13 )]
 position = Vector2( -208, -232 )
-collision_use_parent = true
 tile_data = PoolIntArray( 262244, 0, 0, 458909, 0, 0, 524445, 0, 0, 524446, 0, 0, 852040, 0, 0, 917531, 0, 0, 983066, 0, 0, 983067, 0, 0, 1048602, 0, 0, 1048603, 0, 0, 1048620, 0, 0, 1048621, 0, 0, 1048622, 0, 0 )
 
 [node name="TileMap" parent="." instance=ExtResource( 5 )]

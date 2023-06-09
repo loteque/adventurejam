@@ -41,7 +41,7 @@ func _on_collided(collision):
 		var tile_position = collision.collider.world_to_map(main.player_controller.position)
 		tile_position -= collision.normal
 		var tile = collision.collider.get_cellv(tile_position)
-		print(tile)
+#		print(tile)
 		#collision.collider.set_collision_layer_bit(0, false)
 		#collision.collider.set_collision_mask_bit(0, false)
 
@@ -54,8 +54,11 @@ func _on_next_level_trigger_body_entered(body):
 	if body.is_in_group("Player"):
 		main.level_manager.next_scene()
 
-
 func _on_rain_trigger_body_entered(body):
 	if body.is_in_group("Player"):
 		is_raining = true
 		update_environment()
+
+func _on_FinalGoalArea2D_body_entered(body):
+	if body.is_in_group("Player"):
+		main.emit_signal("last_goal_reached")

@@ -41,3 +41,5 @@ visible = false
 pause_mode = 1
 visible = false
 player_ui_node_path = NodePath("../PlayerUI")
+
+[connection signal="last_goal_reached" from="." to="PlayerController" method="_on_Main_last_goal_reached"]

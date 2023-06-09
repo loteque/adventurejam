@@ -30,6 +30,7 @@ var last_position: Vector2
 var can_jump: bool
 var rust_level: int = 0
 var is_raining: bool = false
+var last_goal_reached: bool = false
 
 var antirust_inventory: Array = [0, 0]
 
@@ -207,8 +208,14 @@ func _on_RustTimer_timeout():
 	JUMP_DISTANCE = 100 - rust_level
 	if rust_level == 90:
 		JUMP = 5
-	if rust_level == 100:
+	if rust_level == 100 && !last_goal_reached:
 		player_ui.get_node("Rusted").show()
-	init_vars()
-#	print("RUST METER: " + str(rust_level))
-#	print("JUMP_DISTANCE: " + str(JUMP_DISTANCE))
+	elif rust_level == 100 && last_goal_reached:
+		print("YOU WIN!")
+		main.level_manager.next_scene()
+	print("RUST METER: " + str(rust_level))
+	print("JUMP_DISTANCE: " + str(JUMP_DISTANCE))
+
+func _on_Main_last_goal_reached():
+	rust_timer.wait_time = rust_timer.wait_time - (rust_timer.wait_time / 2)
+	last_goal_reached = true
