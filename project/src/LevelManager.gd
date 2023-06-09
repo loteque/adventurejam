@@ -11,22 +11,24 @@ onready var scene_node: Node
 var scene_paths = ["res://src/level/StartScreen.tscn",
 				   "res://src/level/JunkYard.tscn", 
 				   "res://src/level/Forest.tscn", 
-				   "res://src/level/City.tscn"]
+				   "res://src/level/City.tscn",
+				   "res://src/level/Credits.tscn"]
 
 var current_scene_paths_index: int = scene_paths.size()
 
 func next_scene():
 	if current_scene_paths_index < scene_paths.size() - 1:
 		unload_scene(scene_node)
-		yield(get_tree().create_timer(0.2), "timeout")
 		load_scene_by_index(current_scene_paths_index + 1)
 		current_scene_paths_index += 1
+		yield(get_tree().create_timer(0.5), "timeout")
 		handle_player()
 		handle_player_ui()
 	else:
 		unload_scene(scene_node)
 		load_scene_by_index(0)
 		current_scene_paths_index = 0
+		yield(get_tree().create_timer(0.5), "timeout")
 		handle_player()
 		handle_player_ui()
 		
@@ -49,7 +51,7 @@ func handle_player():
 	player_controller.show()
 
 func handle_player_ui():
-	if scene_node.name == "StartScreen" or scene_node.name == "StartScreen2":
+	if scene_node.name == "StartScreen" or scene_node.name == "StartScreen2" or scene_node.name == "Credits":
 		main.player_ui.hide()
 	else:
 		main.player_ui.show()
