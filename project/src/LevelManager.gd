@@ -48,7 +48,6 @@ func handle_player():
 	player_controller.show()
 
 func handle_player_ui():
-	print(str(scene_node.name))
 	if scene_node.name == "StartScreen" or scene_node.name == "StartScreen2":
 		main.player_ui.hide()
 	else:
