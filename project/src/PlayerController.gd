@@ -225,7 +225,8 @@ func _on_Area2D_area_exited(area):
 func _on_RustTimer_timeout():
 	rust_level = clamp(rust_level + 1, 0, 100)
 	rust_meter_bar.rect_size.x = float(rust_level)
-	JUMP_DISTANCE = 100 - rust_level
+	update_jump_distance(rust_level)
+	init_vars()
 	if rust_level == 100 && !last_goal_reached:
 		player_ui.get_node("Rusted").show()
 	elif rust_level == 100 && last_goal_reached:
@@ -233,7 +234,7 @@ func _on_RustTimer_timeout():
 		main.level_manager.next_scene()
 	print("RUST METER: " + str(rust_level))
 	print("JUMP_DISTANCE: " + str(JUMP_DISTANCE))
-
+	
 func _on_Main_last_goal_reached():
 	rust_timer.wait_time = rust_timer.wait_time - (rust_timer.wait_time / 2)
 	last_goal_reached = true
