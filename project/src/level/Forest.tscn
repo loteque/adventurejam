@@ -185,6 +185,9 @@ scale = Vector2( 4.7, 7 )
 [node name="AntiRustPickup" parent="." instance=ExtResource( 9 )]
 position = Vector2( 784, 408 )
 
+[node name="AntiRustPickup3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 4744, 88 )
+
 [node name="AntiRustPickup2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1456, 504 )
 
