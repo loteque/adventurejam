@@ -38,7 +38,7 @@ func _input(event):
 func _ready():
 	init_vars()
 	level_manager.next_scene()
-
+	
 func toggle_pause():
 	if is_paused && level_manager.scene_node.name != "StartSceen":
 		antipause()

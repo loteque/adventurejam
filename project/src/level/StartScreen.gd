@@ -14,7 +14,10 @@ func _input(event):
 		
 func _ready():
 	init_vars()
-
+	main.player_controller.reset_rust_level()
+	main.player_controller.reset_rust_timer()
+	main.player_controller.init_vars()
+	
 func _on_StartButton_button_up():
 	main.level_manager.next_scene()
 	$StartMenu.hide()

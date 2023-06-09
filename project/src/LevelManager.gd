@@ -16,7 +16,6 @@ var scene_paths = ["res://src/level/StartScreen.tscn",
 var current_scene_paths_index: int = scene_paths.size()
 
 func next_scene():
-	
 	if current_scene_paths_index < scene_paths.size() - 1:
 		unload_scene(scene_node)
 		load_scene_by_index(current_scene_paths_index + 1)
