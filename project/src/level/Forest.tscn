@@ -175,8 +175,8 @@ position = Vector2( 5952, 240 )
 scale = Vector2( 6, 5 )
 
 [node name="DryArea11" parent="." groups=["DryArea"] instance=ExtResource( 1 )]
-position = Vector2( 5984, 368 )
-scale = Vector2( 73.5, 5.5 )
+position = Vector2( 5984, 384 )
+scale = Vector2( 74, 5.5 )
 
 [node name="DryArea" parent="." groups=["DryArea"] instance=ExtResource( 1 )]
 position = Vector2( 3088, 160 )
