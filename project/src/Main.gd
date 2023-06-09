@@ -23,6 +23,7 @@ var is_paused: bool = false
 
 signal started_raining
 signal stopped_raining
+signal collided
 
 func init_vars():
 	level_node = level_manager.scene_node

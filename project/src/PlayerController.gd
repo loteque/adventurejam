@@ -81,6 +81,8 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x, 0, FRICTION)
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
+	
+	emit_collided_siganl()
 
 func pick_up_item(area: Area2D = null):
 	var antirust_counter = player_ui.get_node("OilMeter/Counter")
@@ -140,7 +142,14 @@ func reset_rust_timer(stop: bool = true):
 	rust_timer.wait_time = rust_timer.default_wait_time
 	if stop:
 		rust_timer.stop()
-	
+
+func emit_collided_siganl():
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision:
+			main.emit_signal("collided", collision)
+#			print (collision)
+
 # Signal Callbacks
 func _on_started_raining():
 	rust_timer.start()

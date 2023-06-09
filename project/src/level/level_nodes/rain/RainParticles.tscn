@@ -2,7 +2,7 @@
 
 [sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 2
-emission_box_extents = Vector3( 1800, 1, 1 )
+emission_box_extents = Vector3( 4000, 1, 1 )
 flag_disable_z = true
 spread = 64.0
 gravity = Vector3( 0, 300, 0 )
@@ -31,11 +31,10 @@ bump_strength = 0.2
 noise = SubResource( 7 )
 
 [node name="RainParticles" type="Particles2D"]
-position = Vector2( 480, -1 )
-amount = 512
+amount = 1024
 lifetime = 1.05
 speed_scale = 2.0
-visibility_rect = Rect2( -600, 0, 1800, 400 )
+visibility_rect = Rect2( -4000, 0, 8000, 400 )
 local_coords = false
 process_material = SubResource( 6 )
 texture = SubResource( 8 )
