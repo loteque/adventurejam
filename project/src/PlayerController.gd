@@ -146,6 +146,11 @@ func get_pickup_node() -> Node:
 			pickup_node = area.get_parent()
 	return pickup_node
 
+func reset():
+	reset_rust_level()
+	reset_rust_timer()
+	init_vars()
+
 func reset_rust_timer(stop: bool = true):
 	rust_timer.wait_time = rust_timer.default_wait_time
 	if stop:
