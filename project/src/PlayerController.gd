@@ -43,7 +43,7 @@ func init_vars():
 func init_signals():
 	main.connect("started_raining", self, "_on_started_raining")
 	main.connect("stopped_raining", self, "_on_stopped_raining")
-	
+
 func _ready():
 	init_vars()
 	init_signals()
@@ -89,6 +89,7 @@ func _physics_process(delta):
 		$Sprite.flip_h = false
 	
 	emit_collided_siganl()
+	
 
 func pick_up_item(area: Area2D = null):
 	var antirust_counter = player_ui.get_node("OilMeter/Counter")
@@ -115,6 +116,7 @@ func use_item():
 	rust_level -= antirust_inventory[1]
 	rust_meter_bar.rect_size.x = float(rust_level)
 	antirust_counter.text = str(antirust_inventory[0])
+	update_jump_distance(rust_level)
 	init_vars()
 	print("used antirust")
 
@@ -149,6 +151,13 @@ func reset_rust_timer(stop: bool = true):
 	if stop:
 		rust_timer.stop()
 
+func reset_rust_level():
+	rust_level = 0
+	JUMP_DISTANCE = 100
+
+func update_jump_distance(differential):
+	JUMP_DISTANCE = 100 - differential
+
 func emit_collided_siganl():
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
@@ -177,10 +186,11 @@ func _on_JumpTimer_timeout():
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Respawn"):
-		last_position.y -= 85
+		last_position.y -= 20
 		position = last_position
 		rust_level = clamp(rust_level + 10, 0, 100)
 		rust_meter_bar.rect_size.x = float(rust_level)
+		update_jump_distance(rust_level)
 		init_vars()
 	if area.get_parent().is_in_group("Water"):
 		if is_raining:
@@ -194,8 +204,6 @@ func _on_Area2D_area_entered(area):
 		if area.get_parent().collide_to_pick_up:
 			pick_up_item(area)
 		print("entered pickup item area")
-	
-	print("_on_area2D_area_entered: " + str(area.get_parent()))
 
 func _on_Area2D_area_exited(area):
 	if area.get_parent().is_in_group("Water"):
@@ -211,8 +219,6 @@ func _on_RustTimer_timeout():
 	rust_level = clamp(rust_level + 1, 0, 100)
 	rust_meter_bar.rect_size.x = float(rust_level)
 	JUMP_DISTANCE = 100 - rust_level
-	if rust_level == 90:
-		JUMP = 5
 	if rust_level == 100 && !last_goal_reached:
 		player_ui.get_node("Rusted").show()
 	elif rust_level == 100 && last_goal_reached:
