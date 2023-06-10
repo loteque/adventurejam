@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 export (NodePath) var main_node_path = ".."
 export (NodePath) var player_controller_node_path = "../PlayerController"
@@ -17,7 +17,9 @@ var scene_paths = ["res://src/level/StartScreen.tscn",
 var current_scene_paths_index: int = scene_paths.size()
 
 func next_scene():
+	$LoadingScreen.show()
 	if current_scene_paths_index < scene_paths.size() - 1:
+		
 		unload_scene(scene_node)
 		load_scene_by_index(current_scene_paths_index + 1)
 		current_scene_paths_index += 1
@@ -31,6 +33,8 @@ func next_scene():
 		yield(get_tree().create_timer(0.5), "timeout")
 		handle_player()
 		handle_player_ui()
+	yield(get_tree().create_timer(0.5), "timeout")
+	$LoadingScreen.hide()
 		
 func load_scene_by_index(scene_paths_index):
 		var packed_scene = load(scene_paths[scene_paths_index])  

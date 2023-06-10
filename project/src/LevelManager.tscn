@@ -2,5 +2,13 @@
 
 [ext_resource path="res://src/LevelManager.gd" type="Script" id=1]
 
-[node name="LevelManager" type="Node"]
+[node name="LevelManager" type="Control"]
 script = ExtResource( 1 )
+
+[node name="LoadingScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="LoadingScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
