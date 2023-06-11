@@ -48,6 +48,10 @@ func _ready():
 	init_vars()
 	init_signals()
 
+func _input(event):
+	if event.is_action_pressed("jump") && can_jump:
+		main.music_manager.play_sfx(0)
+
 func _physics_process(delta):
 	
 	velocity.y += GRAVITY * delta
@@ -73,7 +77,6 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("jump") && can_jump:
 		velocity.y = -JUMP_SPEED
-		main.music_manager.play_sfx(0)
 	
 	if Input.is_action_pressed("ui_right"):
 		velocity.x = lerp(velocity.x, SPEED, FRICTION)
