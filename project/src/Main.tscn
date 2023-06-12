@@ -22,7 +22,6 @@ pause_mode = 2
 
 [node name="TouchUI" parent="." instance=ExtResource( 5 )]
 pause_mode = 2
-visible = false
 
 [node name="PlayerUI" parent="." instance=ExtResource( 8 )]
 pause_mode = 2

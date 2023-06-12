@@ -13,3 +13,7 @@ func _on_CheckButton_toggled(button_pressed):
 
 func _on_Button_button_up():
 	hide()
+
+func _on_HSlider_value_changed(value):
+	var player_camera = main.player_controller.get_node("Camera2D")
+	player_camera.zoom = Vector2(value / 100, value / 100)

@@ -26,7 +26,6 @@ texture = ExtResource( 2 )
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 40, -50 )
 current = true
-zoom = Vector2( -1, -1 )
 smoothing_enabled = true
 smoothing_speed = 20.0
 offset_v = 0.86
