@@ -4,8 +4,8 @@ on:
     types: [published]
 
 env:
-  ITCH_USER: your_itchio_username
-  ITCH_GAME: the_url_stub_of_your_game
+  ITCH_USER: loteque
+  ITCH_GAME: rustyrobot
 
 jobs:
 
