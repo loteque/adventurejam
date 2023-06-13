@@ -154,6 +154,7 @@ func get_pickup_node() -> Node:
 func reset():
 	reset_rust_level()
 	reset_rust_timer()
+	reset_anti_rust_inventory()
 	init_vars()
 
 func reset_rust_timer(stop: bool = true):
@@ -164,7 +165,13 @@ func reset_rust_timer(stop: bool = true):
 func reset_rust_level():
 	rust_level = 0
 	JUMP_DISTANCE = 100
-
+	rust_meter_bar.rect_size.x = float(rust_level)
+	
+func reset_anti_rust_inventory():
+	var antirust_counter = player_ui.get_node("OilMeter/Counter")
+	antirust_inventory = [0, 0]
+	antirust_counter.text = str(antirust_inventory[0])
+	
 func update_jump_distance(differential):
 	JUMP_DISTANCE = 100 - differential
 
@@ -203,6 +210,8 @@ func _on_Area2D_area_entered(area):
 			rust_meter_bar.rect_size.x = float(rust_level)
 			update_jump_distance(rust_level)
 			init_vars()
+		if rust_level == 100 && !last_goal_reached:
+			player_ui.get_node("Rusted").show()
 	if area.get_parent().is_in_group("Water"):
 		main.music_manager.play_sfx(1)
 		if is_raining:

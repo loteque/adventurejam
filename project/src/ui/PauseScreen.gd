@@ -18,7 +18,7 @@ func _on_Settings_button_up():
 func _on_Quit_button_up():
 	main.level_manager.unload_scene(main.level_manager.scene_node)
 	main.level_manager.load_scene_by_index(0)
-	main.player_controller.player_ui.reset_rust_meter()
+	main.player_controller.reset()
 	main.level_manager.handle_player_ui()
 	hide()
 	main.antipause()
