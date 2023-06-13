@@ -33,21 +33,27 @@ margin_right = 181.0
 margin_bottom = 40.0
 pressed = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer"]
 margin_top = 44.0
 margin_right = 181.0
-margin_bottom = 60.0
+margin_bottom = 58.0
+text = "Difficulty Options:"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 62.0
+margin_right = 181.0
+margin_bottom = 78.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
 margin_top = 1.0
-margin_right = 37.0
+margin_right = 60.0
 margin_bottom = 15.0
-text = "Zoom"
+text = "View Size"
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 41.0
-margin_right = 57.0
+margin_left = 64.0
+margin_right = 80.0
 margin_bottom = 16.0
 ratio = 10.0
 stretch_mode = 1
@@ -63,6 +69,22 @@ rounded = true
 tick_count = 13
 ticks_on_borders = true
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 82.0
+margin_right = 181.0
+margin_bottom = 106.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+margin_top = 5.0
+margin_right = 114.0
+margin_bottom = 19.0
+text = "Rust When Falling"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer3"]
+margin_left = 118.0
+margin_right = 142.0
+margin_bottom = 24.0
+
 [node name="Button" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -74,4 +96,5 @@ text = "BACK"
 
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/CheckButton" to="." method="_on_CheckButton_toggled"]
 [connection signal="value_changed" from="VBoxContainer/HBoxContainer2/AspectRatioContainer/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/CheckBox" to="." method="_on_CheckBox_pressed"]
 [connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]

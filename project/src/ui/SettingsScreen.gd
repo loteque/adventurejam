@@ -17,3 +17,10 @@ func _on_Button_button_up():
 func _on_HSlider_value_changed(value):
 	var player_camera = main.player_controller.get_node("Camera2D")
 	player_camera.zoom = Vector2(value / 100, value / 100)
+
+
+func _on_CheckBox_pressed():
+	if !main.player_controller.rust_when_falling:
+		main.player_controller.rust_when_falling = true
+	else: 
+		main.player_controller.rust_when_falling = false

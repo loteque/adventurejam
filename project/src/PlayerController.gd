@@ -30,6 +30,7 @@ var last_position: Vector2
 var can_jump: bool
 var rust_level: int = 0
 var is_raining: bool = false
+var rust_when_falling: bool = false
 var last_goal_reached: bool = false
 
 var antirust_inventory: Array = [0, 0]
@@ -197,10 +198,11 @@ func _on_Area2D_area_entered(area):
 	if area.is_in_group("Respawn"):
 		last_position.y -= 20
 		position = last_position
-		rust_level = clamp(rust_level + 10, 0, 100)
-		rust_meter_bar.rect_size.x = float(rust_level)
-		update_jump_distance(rust_level)
-		init_vars()
+		if rust_when_falling:
+			rust_level = clamp(rust_level + 10, 0, 100)
+			rust_meter_bar.rect_size.x = float(rust_level)
+			update_jump_distance(rust_level)
+			init_vars()
 	if area.get_parent().is_in_group("Water"):
 		main.music_manager.play_sfx(1)
 		if is_raining:
