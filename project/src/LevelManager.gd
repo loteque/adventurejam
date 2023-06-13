@@ -19,7 +19,6 @@ var current_scene_paths_index: int = scene_paths.size()
 func next_scene():
 	$LoadingScreen.show()
 	if current_scene_paths_index < scene_paths.size() - 1:
-		
 		unload_scene(scene_node)
 		load_scene_by_index(current_scene_paths_index + 1)
 		current_scene_paths_index += 1
@@ -37,6 +36,7 @@ func next_scene():
 	$LoadingScreen.hide()
 		
 func load_scene_by_index(scene_paths_index):
+		current_scene_paths_index = scene_paths_index
 		var packed_scene = load(scene_paths[scene_paths_index])  
 		var scene_instance = packed_scene.instance()
 		main.add_child(scene_instance, true)
