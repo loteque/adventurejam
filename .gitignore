@@ -10,9 +10,6 @@ export.cfg
 ecport_presets.cfg
 release/
 
-# krita ignores
-*.import
-
 # Imported transaltions
 *.translation
 
