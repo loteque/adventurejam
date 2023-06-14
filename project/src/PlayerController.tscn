@@ -13,6 +13,7 @@ extents = Vector2( 5, 10.25 )
 [node name="PlayerController" type="KinematicBody2D" groups=["Player"]]
 script = ExtResource( 1 )
 player_ui_node_path = NodePath("")
+FRICTION = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 4.25 )
@@ -52,6 +53,21 @@ wait_time = 0.7
 script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 16.0
+margin_top = -26.0
+margin_right = 111.0
+margin_bottom = 22.0
+bbcode_enabled = true
+bbcode_text = "Why did they throw me out. Am I Broken?"
+text = "Why did they throw me out. Am I Broken?"
+scroll_active = false
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

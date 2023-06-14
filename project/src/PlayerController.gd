@@ -14,7 +14,7 @@ onready var player_area: Node = get_node(player_area_node_path)
 
 onready var rust_meter_bar = player_ui.get_node("RustMeterContainer/RustMeter/RustMeterBar")
 
-export var FRICTION := 0.1
+export var FRICTION := 0.01
 export var COYOTE_TIME := 0.1
 export var JUMP := 38
 export var JUMP_DISTANCE := 100
@@ -32,6 +32,7 @@ var rust_level: int = 0
 var is_raining: bool = false
 var rust_when_falling: bool = false
 var last_goal_reached: bool = false
+var stopped: bool = false
 
 var antirust_inventory: Array = [0, 0]
 
@@ -48,7 +49,7 @@ func init_signals():
 func _ready():
 	init_vars()
 	init_signals()
-
+	
 func _input(event):
 	if event.is_action_pressed("jump") && can_jump:
 		main.music_manager.play_sfx(0)
@@ -155,6 +156,10 @@ func reset():
 	reset_rust_level()
 	reset_rust_timer()
 	reset_anti_rust_inventory()
+	if is_raining:
+		rust_timer.start()
+	if $RichTextLabel.visible:
+		$RichTextLabel.hide()
 	init_vars()
 
 func reset_rust_timer(stop: bool = true):
@@ -182,6 +187,12 @@ func emit_collided_siganl():
 			main.emit_signal("collided", collision)
 #			print (collision)
 
+func stop():
+	velocity = Vector2(0, 0)
+	JUMP_DISTANCE = 0
+	stopped = true
+	init_vars()
+	
 # Signal Callbacks
 func _on_started_raining():
 	rust_timer.start()
@@ -237,17 +248,18 @@ func _on_Area2D_area_exited(area):
 	print(str(rust_timer.wait_time))
 
 func _on_RustTimer_timeout():
-	rust_level = clamp(rust_level + 1, 0, 100)
-	rust_meter_bar.rect_size.x = float(rust_level)
-	update_jump_distance(rust_level)
-	init_vars()
+	if !stopped:
+		rust_level = clamp(rust_level + 1, 0, 100)
+		rust_meter_bar.rect_size.x = float(rust_level)
+		update_jump_distance(rust_level)
+		init_vars()
+	else:
+		rust_level = clamp(rust_level + 1, 0, 100)
+		rust_meter_bar.rect_size.x = float(rust_level)
 	if rust_level == 100 && !last_goal_reached:
 		player_ui.get_node("Rusted").show()
 	elif rust_level == 100 && last_goal_reached:
-		print("YOU WIN!")
 		main.level_manager.next_scene()
-	print("RUST METER: " + str(rust_level))
-	print("JUMP_DISTANCE: " + str(JUMP_DISTANCE))
 	
 func _on_Main_last_goal_reached():
 	rust_timer.wait_time = rust_timer.wait_time - (rust_timer.wait_time / 2)

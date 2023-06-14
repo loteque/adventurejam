@@ -66,3 +66,9 @@ func _on_rain_trigger_body_entered(body):
 func _on_FinalGoalArea2D_body_entered(body):
 	if body.is_in_group("Player"):
 		main.emit_signal("last_goal_reached")
+
+
+func _on_Stop_body_entered(body):
+	if body.is_in_group("Player"):
+		main.player_controller.get_node("RichTextLabel").show()
+		main.player_controller.stop()
