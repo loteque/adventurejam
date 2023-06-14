@@ -21,7 +21,7 @@ func next_scene():
 	if current_scene_paths_index < scene_paths.size() - 1:
 		unload_scene(scene_node)
 		load_scene_by_index(current_scene_paths_index + 1)
-		current_scene_paths_index += 1
+		#current_scene_paths_index += 1
 		yield(get_tree().create_timer(0.5), "timeout")
 		handle_player()
 		handle_player_ui()

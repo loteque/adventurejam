@@ -13,9 +13,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -32.0
-margin_top = -43.0
+margin_top = -63.0
 margin_right = 32.0
-margin_bottom = 43.0
+margin_bottom = 47.0
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
@@ -30,19 +30,26 @@ margin_right = 64.0
 margin_bottom = 38.0
 text = "Resume"
 
-[node name="Settings" type="Button" parent="VBoxContainer"]
+[node name="Retry" type="Button" parent="VBoxContainer"]
 margin_top = 42.0
 margin_right = 64.0
 margin_bottom = 62.0
-text = "Settings"
+text = "Retry"
 
-[node name="Quit" type="Button" parent="VBoxContainer"]
+[node name="Settings" type="Button" parent="VBoxContainer"]
 margin_top = 66.0
 margin_right = 64.0
 margin_bottom = 86.0
+text = "Settings"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+margin_top = 90.0
+margin_right = 64.0
+margin_bottom = 110.0
 text = "Quit"
 
 [connection signal="visibility_changed" from="." to="." method="_on_PauseScreen_visibility_changed"]
 [connection signal="button_up" from="VBoxContainer/Resume" to="." method="_on_Resume_button_up"]
+[connection signal="button_up" from="VBoxContainer/Retry" to="." method="_on_Retry_button_up"]
 [connection signal="button_up" from="VBoxContainer/Settings" to="." method="_on_Settings_button_up"]
 [connection signal="button_up" from="VBoxContainer/Quit" to="." method="_on_Quit_button_up"]

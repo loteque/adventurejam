@@ -20,7 +20,10 @@ func _ready():
 	main.player_controller.init_vars()
 	
 func _on_StartButton_button_up():
-	main.level_manager.next_scene()
+	main.level_manager.unload_scene(main.level_manager.scene_node)
+	main.level_manager.load_scene_by_index(1)
+	main.level_manager.handle_player()
+	main.level_manager.handle_player_ui()
 	$StartMenu.hide()
 
 func _on_SettingsButton_button_up():

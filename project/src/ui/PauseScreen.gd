@@ -26,3 +26,13 @@ func _on_Quit_button_up():
 func _on_PauseScreen_visibility_changed():
 	if visible:
 		$VBoxContainer/Resume.grab_focus()
+
+
+func _on_Retry_button_up():
+	main.level_manager.unload_scene(main.level_manager.scene_node)
+	main.level_manager.load_scene_by_index(main.level_manager.current_scene_paths_index)
+	main.player_controller.reset()
+	main.level_manager.handle_player()
+	main.level_manager.handle_player_ui()
+	hide()
+	main.antipause()
