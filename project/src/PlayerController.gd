@@ -16,9 +16,9 @@ onready var rust_meter_bar = player_ui.get_node("RustMeterContainer/RustMeter/Ru
 
 export var FRICTION := 0.01
 export var COYOTE_TIME := 0.1
-export var JUMP := 38
+export var JUMP := 42
 export var JUMP_DISTANCE := 100
-export var TIME_TO_JUMP_PEAK := 0.2
+export var TIME_TO_JUMP_PEAK := 0.23
 export var INVENTORY_MAX := 3
 
 var GRAVITY : float

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://src/level/level_nodes/dry_area/DryArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://asset/Art/cave layer 2.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://src/level/Background.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/level/level_nodes/level_end.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/level/level_nodes/next_level_trigger.tscn" type="PackedScene" id=20]
+[ext_resource path="res://asset/Art/player_idle_rust.png" type="Texture" id=21]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 49, 14.5 )
@@ -247,6 +248,42 @@ position = Vector2( 2400, 280 )
 [node name="level_end" parent="." instance=ExtResource( 19 )]
 
 [node name="next_level_trigger" parent="." instance=ExtResource( 20 )]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -32, 256 )
+rotation = -1.14312
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 21 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( -48, 248 )
+rotation = -0.0984091
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 21 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( -57, 253 )
+rotation = 0.701585
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 21 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( -20, 253 )
+rotation = 2.74868
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 21 )
+
+[node name="Sprite5" type="Sprite" parent="."]
+position = Vector2( -4.99999, 253 )
+rotation = 1.27041
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 21 )
+
+[node name="Sprite6" type="Sprite" parent="."]
+position = Vector2( 12, 257 )
+rotation = -0.524359
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 21 )
 
 [connection signal="script_changed" from="." to="." method="_on_Level_script_changed"]
 [connection signal="body_entered" from="level_end" to="." method="_on_level_end_body_entered"]
