@@ -57,6 +57,9 @@ func _on_level_end_body_entered(body):
 func _on_next_level_trigger_body_entered(body):
 	if body.is_in_group("Player"):
 		main.level_manager.next_scene()
+#		main.level_manager.unload_scene(main.level_manager.scene_node)
+#		yield(get_tree().create_timer(0.5), "timeout")
+#		main.level_manager.load_scene_by_index(main.level_manager.current_scene_paths_index + 1)
 
 func _on_rain_trigger_body_entered(body):
 	if body.is_in_group("Player"):

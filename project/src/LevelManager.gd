@@ -20,21 +20,18 @@ func next_scene():
 	$LoadingScreen.show()
 	if current_scene_paths_index < scene_paths.size() - 1:
 		unload_scene(scene_node)
-		load_scene_by_index(current_scene_paths_index + 1)
-		#current_scene_paths_index += 1
 		yield(get_tree().create_timer(0.5), "timeout")
+		load_scene_by_index(current_scene_paths_index + 1)
 		handle_player()
 		handle_player_ui()
 	else:
 		unload_scene(scene_node)
 		load_scene_by_index(0)
 		current_scene_paths_index = 0
-		yield(get_tree().create_timer(0.5), "timeout")
 		handle_player()
 		handle_player_ui()
-	yield(get_tree().create_timer(0.5), "timeout")
 	$LoadingScreen.hide()
-		
+	
 func load_scene_by_index(scene_paths_index):
 		current_scene_paths_index = scene_paths_index
 		var packed_scene = load(scene_paths[scene_paths_index])  
